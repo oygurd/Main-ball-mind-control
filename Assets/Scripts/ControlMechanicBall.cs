@@ -8,12 +8,12 @@ public class ControlMechanicBall : MonoBehaviour
     //ball parameters
     [SerializeField] GameObject ball;
     [SerializeField] CircleCollider2D ballCollider;
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private bool isHeld;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] bool isHeld;
 
     //victim parameters
     [SerializeField] BoxCollider2D victimCollider;
-    [SerializeField] GameObject ballHolder;
+    [SerializeField] Transform ballHolder;
 
     //using inputsystem
     InputAction MoveInputAction;
@@ -42,7 +42,7 @@ public class ControlMechanicBall : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ball = gameObject;
+        //ball = gameObject;
         ballCollider = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -54,6 +54,8 @@ public class ControlMechanicBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        InputmoveValue = MoveInputAction.ReadValue<Vector2>();
+
         UpdateState();
         switch (movementState)
         {
@@ -62,7 +64,6 @@ public class ControlMechanicBall : MonoBehaviour
                 break;
             case MovementState.Walk:
                 Debug.Log("Currently Walking");
-
                 Walk();
                 break;
         }
@@ -70,7 +71,7 @@ public class ControlMechanicBall : MonoBehaviour
 
     public void UpdateState()
     {
-        if (victimCollider == null)
+        if (victimCollider == null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
         {
             movementState = MovementState.Idle;
         }
@@ -89,10 +90,10 @@ public class ControlMechanicBall : MonoBehaviour
     public void Walk()
     {
         //Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        if (InputmoveValue.x != 0 && isHeld)
+        if (InputmoveValue.x != 0)
         {
-            ball.transform.position = victimCollider.bounds.center;
-            rb.AddForce(InputmoveValue * walkSpeed, ForceMode2D.Force);
+            //ball.transform.position = victimCollider.bounds.center;
+            rb.AddForceX(InputmoveValue.x * walkSpeed, ForceMode2D.Force);
         }
     }
 
@@ -105,8 +106,14 @@ public class ControlMechanicBall : MonoBehaviour
         {
             //other.gameObject.GetComponent<PolygonCollider2D>();
             victimCollider = other.gameObject.GetComponent<BoxCollider2D>();
-            ballHolder = other.gameObject.GetComponentInParent<GameObject>();
-            isHeld = true;  
+            ballHolder = victimCollider.transform.Find("Ball holder");
+            isHeld = true;
+            
+            rb.freezeRotation = true;
+            victimCollider.transform.parent = gameObject.transform;
+            transform.position = ballHolder.position;
+            
+            
         }
     }
 }

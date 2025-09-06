@@ -7,11 +7,13 @@ public class ControlledMechanicVictim : MonoBehaviour
     
     [SerializeField] private Rigidbody2D victimRb;
     [SerializeField] public Collider2D victimCollider;
+
+    public Transform ballHolderInVictim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        victimRb = GetComponent<Rigidbody2D>();
         victimCollider = GetComponent<Collider2D>();
+        ballHolderInVictim = GetComponentInChildren<Transform>();
     }
 
     // Update is called once per frame

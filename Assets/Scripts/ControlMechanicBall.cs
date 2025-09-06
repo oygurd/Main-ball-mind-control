@@ -1,11 +1,19 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ControlMechanicBall : MonoBehaviour
 {
+    //ball parameters
     [SerializeField] GameObject ball;
     [SerializeField] CircleCollider2D ballCollider;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private bool isHeld;
+
+    //victim parameters
+    [SerializeField] BoxCollider2D victimCollider;
+    [SerializeField] GameObject ballHolder;
 
     //using inputsystem
     InputAction MoveInputAction;
@@ -13,7 +21,7 @@ public class ControlMechanicBall : MonoBehaviour
     InputAction JumpInputAction;
 
 
-    private float walkSpeed = 10;
+    [SerializeField] float walkSpeed;
 
     public enum MovementState
     {
@@ -34,7 +42,7 @@ public class ControlMechanicBall : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ball = GetComponent<GameObject>();
+        ball = gameObject;
         ballCollider = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -46,6 +54,7 @@ public class ControlMechanicBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateState();
         switch (movementState)
         {
             case MovementState.Idle:
@@ -53,20 +62,19 @@ public class ControlMechanicBall : MonoBehaviour
                 break;
             case MovementState.Walk:
                 Debug.Log("Currently Walking");
-                InputmoveValue = MoveInputAction.ReadValue<Vector2>();
 
                 Walk();
                 break;
         }
     }
 
-    void UpdateState()
+    public void UpdateState()
     {
-        if (MoveInputAction.ReadValue<Vector2>() == Vector2.zero)
+        if (victimCollider == null)
         {
             movementState = MovementState.Idle;
         }
-        else if (MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
+        else if (victimCollider != null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
         {
             movementState = MovementState.Walk;
         }
@@ -76,17 +84,29 @@ public class ControlMechanicBall : MonoBehaviour
 
     public void Idle() //handle idling for ball
     {
-        
     }
 
     public void Walk()
     {
         //Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        if (InputmoveValue.x != 0)
+        if (InputmoveValue.x != 0 && isHeld)
         {
-            rb.AddForce(InputmoveValue * 10, ForceMode2D.Impulse);
+            ball.transform.position = victimCollider.bounds.center;
+            rb.AddForce(InputmoveValue * walkSpeed, ForceMode2D.Force);
         }
     }
 
     #endregion
+
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Victim"))
+        {
+            //other.gameObject.GetComponent<PolygonCollider2D>();
+            victimCollider = other.gameObject.GetComponent<BoxCollider2D>();
+            ballHolder = other.gameObject.GetComponentInParent<GameObject>();
+            isHeld = true;  
+        }
+    }
 }

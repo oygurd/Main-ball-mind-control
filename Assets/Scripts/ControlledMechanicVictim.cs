@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class ControlledMechanicVictim : MonoBehaviour
 { 
+    //in this script I want the victim to move randomly (with a bit of intention to go to the ball, and when touching the ball, movement is possible
+    
+    
     [SerializeField] private Rigidbody2D victimRb;
+    [SerializeField] public Collider2D victimCollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         victimRb = GetComponent<Rigidbody2D>();
+        victimCollider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame

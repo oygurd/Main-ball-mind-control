@@ -5,7 +5,6 @@ public class ControlledMechanicVictim : MonoBehaviour
     //in this script I want the victim to move randomly (with a bit of intention to go to the ball, and when touching the ball, movement is possible
     
     
-    [SerializeField] private Rigidbody2D victimRb;
     [SerializeField] public Collider2D victimCollider;
 
     public Transform ballHolderInVictim;
@@ -13,7 +12,6 @@ public class ControlledMechanicVictim : MonoBehaviour
     void Start()
     {
         victimCollider = GetComponent<Collider2D>();
-        ballHolderInVictim = GetComponentInChildren<Transform>();
     }
 
     // Update is called once per frame

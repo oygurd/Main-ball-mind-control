@@ -13,6 +13,7 @@ public class ControlMechanicBall : MonoBehaviour
 
     //victim parameters
     [SerializeField] BoxCollider2D victimCollider;
+    [SerializeField] Rigidbody2D victimRb;
     [SerializeField] Transform ballHolder;
 
     //using inputsystem
@@ -106,14 +107,14 @@ public class ControlMechanicBall : MonoBehaviour
         {
             //other.gameObject.GetComponent<PolygonCollider2D>();
             victimCollider = other.gameObject.GetComponent<BoxCollider2D>();
+            victimRb = other.gameObject.GetComponent<Rigidbody2D>();
             ballHolder = victimCollider.transform.Find("Ball holder");
             isHeld = true;
-            
+
+            //victimRb.mass = 0;
             rb.freezeRotation = true;
-            victimCollider.transform.parent = gameObject.transform;
             transform.position = ballHolder.position;
-            
-            
+            victimCollider.transform.parent = gameObject.transform;
         }
     }
 }

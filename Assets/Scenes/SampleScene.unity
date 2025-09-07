@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 937530910}
   - component: {fileID: 937530909}
   - component: {fileID: 937530904}
+  - component: {fileID: 937530911}
   m_Layer: 0
   m_Name: Victim
   m_TagString: Victim
@@ -543,7 +544,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlledMechanicVictim
   victimCollider: {fileID: 0}
-  ballHolderInVictim: {fileID: 0}
+  victimRigidbody: {fileID: 0}
+  walkSpeed: 2
+  isHeld: 0
+  ballTransform: {fileID: 0}
+  ballRb: {fileID: 0}
+  ballHolderInVictim: {fileID: 1860622000}
+  movementState: 0
 --- !u!212 &937530907
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -663,7 +670,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.06
 --- !u!50 &937530910
 Rigidbody2D:
   serializedVersion: 5
@@ -678,12 +685,12 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 4
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -691,6 +698,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &937530911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937530903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 519420031}
 --- !u!1 &1806201224
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,7 +905,7 @@ GameObject:
   - component: {fileID: 2146074930}
   m_Layer: 0
   m_Name: ball (player)
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1016,7 +1053,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146074924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a21f3276ff224248be95cc49fc64048, type: 3}
   m_Name: 
@@ -1027,6 +1064,7 @@ MonoBehaviour:
   isHeld: 0
   victimCollider: {fileID: 0}
   victimRb: {fileID: 0}
+  VictimTransform: {fileID: 0}
   ballHolder: {fileID: 0}
   walkSpeed: 2
   movementState: 0
@@ -1037,7 +1075,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146074924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 

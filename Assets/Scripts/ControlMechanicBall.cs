@@ -59,6 +59,10 @@ public class ControlMechanicBall : MonoBehaviour
         InputmoveValue = MoveInputAction.ReadValue<Vector2>();
 
         UpdateState();
+    }
+
+    private void FixedUpdate()
+    {
         switch (movementState)
         {
             case MovementState.Idle:
@@ -66,8 +70,8 @@ public class ControlMechanicBall : MonoBehaviour
                 break;
             case MovementState.Walk:
                 Debug.Log("Currently Walking");
-                transform.position = ballHolder.position;
-                VictimTransform.position = transform.position;
+                //transform.position = ballHolder.position;
+                //VictimTransform.position = transform.position;
                 Walk();
                 break;
         }
@@ -97,7 +101,8 @@ public class ControlMechanicBall : MonoBehaviour
         if (InputmoveValue.x != 0)
         {
             //ball.transform.position = victimCollider.bounds.center;
-            rb.AddForceX(InputmoveValue.x * walkSpeed, ForceMode2D.Force);
+           // rb.AddForceX(InputmoveValue.x * walkSpeed, ForceMode2D.Force);
+           victimRb.AddForce(InputmoveValue * walkSpeed, ForceMode2D.Force);
         }
     }
 
@@ -112,15 +117,16 @@ public class ControlMechanicBall : MonoBehaviour
             victimCollider = other.gameObject.GetComponent<BoxCollider2D>();
             victimRb = other.gameObject.GetComponent<Rigidbody2D>();
             VictimTransform = other.gameObject.GetComponent<Transform>();
-            
+
             ballHolder = victimCollider.transform.Find("Ball holder");
             isHeld = true;
 
             //victimRb.simulated = false;
-           // Destroy(victimRb = other.gameObject.GetComponent<Rigidbody2D>());
-            rb.freezeRotation = true;
+           // rb.freezeRotation = true;
+          // rb.simulated = false;    
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
             transform.position = ballHolder.position;
-            VictimTransform.position = transform.position;
+            //VictimTransform.position = transform.position;
             //victimCollider.transform.parent = gameObject.transform;
         }
     }

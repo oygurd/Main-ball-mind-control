@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 937530909}
   - component: {fileID: 937530904}
   - component: {fileID: 937530911}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Victim
   m_TagString: Victim
   m_Icon: {fileID: 0}
@@ -546,6 +546,26 @@ MonoBehaviour:
   victimCollider: {fileID: 0}
   victimRigidbody: {fileID: 0}
   walkSpeed: 2
+  jumpForce: 0.5
+  groundFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 55
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  isGrounded: 0
+  rayDistance: 0.45
   isHeld: 0
   ballTransform: {fileID: 0}
   ballRb: {fileID: 0}
@@ -670,7 +690,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0.06
+  m_EdgeRadius: 0
 --- !u!50 &937530910
 Rigidbody2D:
   serializedVersion: 5
@@ -867,7 +887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1860622000}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ball holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

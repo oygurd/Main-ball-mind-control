@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,21 +7,31 @@ public class ControlledMechanicVictim : MonoBehaviour
 {
     //in this script I want the victim to move randomly (with a bit of intention to go to the ball, and when touching the ball, movement is possible
 
-
+    //vimctim parameters
     [SerializeField] public Collider2D victimCollider;
     [SerializeField] Rigidbody2D victimRigidbody;
     [SerializeField] float walkSpeed;
+    [SerializeField] float jumpForce;
+
+    //ground detection
+    [SerializeField] LayerMask groundLayer = 3;
+    [SerializeField] bool isGrounded;
+    [SerializeField] float rayDistance;
+    [SerializeField] int jumpCount;
+    [SerializeField] private bool didJump;
 
 
     //ball parameters
     [SerializeField] private bool isHeld;
     [SerializeField] Transform ballTransform;
     [SerializeField] Rigidbody2D ballRb;
+    [SerializeField] CircleCollider2D ballCollider;
 
     //using inputsystem
     InputAction MoveInputAction;
     private Vector2 InputmoveValue;
     InputAction JumpInputAction;
+
 
     public Transform ballHolderInVictim;
 
@@ -32,7 +44,7 @@ public class ControlledMechanicVictim : MonoBehaviour
         ThrowBall
     }
 
-    public MovementState movementState;
+    public MovementState movementState; //referencer for the movementstate enum
 
     public enum Attack
     {
@@ -46,7 +58,9 @@ public class ControlledMechanicVictim : MonoBehaviour
         victimCollider = GetComponent<Collider2D>();
         victimRigidbody = GetComponent<Rigidbody2D>();
 
-
+        jumpCount = 1;
+        didJump = false;
+        
         //inputsystem
         MoveInputAction = InputSystem.actions.FindAction("Move");
         JumpInputAction = InputSystem.actions.FindAction("Jump");
@@ -63,11 +77,33 @@ public class ControlledMechanicVictim : MonoBehaviour
                 break;
             case MovementState.Walk:
                 Debug.Log("Currently Walking");
-               
-                ballTransform.position = Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
-
+                ballTransform.position =
+                    Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
                 Walk();
                 break;
+            case MovementState.Jump:
+                Debug.Log("Currently Jumping");
+                Jump();
+                break;
+        }
+
+        ballTransform.position =
+            Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
+
+        //managing the ground detection -----------------
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, ~groundLayer);
+
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+            jumpCount = 1;
+            didJump = false;
+        }
+        else if (hit.collider == null)
+        {
+            isGrounded = false;
+            jumpCount = 0;
+            didJump = true;
         }
 
         UpdateState();
@@ -86,6 +122,14 @@ public class ControlledMechanicVictim : MonoBehaviour
         else if (ballTransform != null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
         {
             movementState = MovementState.Walk;
+            if (JumpInputAction.IsPressed() && isGrounded && !didJump)
+            {
+                movementState = MovementState.Jump;
+            }
+        }
+        else if (JumpInputAction.IsPressed() && isGrounded && !didJump)
+        {
+            movementState = MovementState.Jump;
         }
     }
 
@@ -97,7 +141,6 @@ public class ControlledMechanicVictim : MonoBehaviour
 
     public void Walk()
     {
-        //Vector2 moveValue = moveAction.ReadValue<Vector2>();
         if (InputmoveValue.x != 0)
         {
             victimRigidbody.AddForceX(InputmoveValue.x * walkSpeed, ForceMode2D.Force);
@@ -105,8 +148,30 @@ public class ControlledMechanicVictim : MonoBehaviour
         }
     }
 
+    public void Jump()
+    {
+        if (JumpInputAction.IsPressed() && isGrounded)
+        {
+            victimRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            jumpCount -= 1;
+        }
+    }
+
     #endregion
 
+    private void OnDrawGizmos()
+    {
+        if (isGrounded)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+
+        Gizmos.DrawRay(transform.position, Vector2.down * rayDistance);
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -114,13 +179,15 @@ public class ControlledMechanicVictim : MonoBehaviour
         {
             ballTransform = other.gameObject.GetComponent<Transform>();
             ballRb = other.gameObject.GetComponent<Rigidbody2D>();
-
+            ballCollider = other.gameObject.GetComponent<CircleCollider2D>();
             isHeld = true;
-            
+
+
+            ballCollider.enabled = false;
             ballRb.freezeRotation = true;
             ballRb.constraints = RigidbodyConstraints2D.FreezePosition;
-            ballTransform.position = Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
-
+            ballTransform.position =
+                Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
         }
     }
 }

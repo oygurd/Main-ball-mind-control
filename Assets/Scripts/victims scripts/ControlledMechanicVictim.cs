@@ -63,8 +63,7 @@ public class ControlledMechanicVictim : MonoBehaviour
                 break;
             case MovementState.Walk:
                 Debug.Log("Currently Walking");
-                //transform.position = ballHolder.position;
-                //VictimTransform.position = transform.position;
+               
                 ballTransform.position = Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
 
                 Walk();
@@ -80,11 +79,11 @@ public class ControlledMechanicVictim : MonoBehaviour
 
     public void UpdateState()
     {
-        if (victimCollider == null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
+        if (ballTransform == null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
         {
             movementState = MovementState.Idle;
         }
-        else if (victimCollider != null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
+        else if (ballTransform != null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
         {
             movementState = MovementState.Walk;
         }
@@ -120,6 +119,8 @@ public class ControlledMechanicVictim : MonoBehaviour
             
             ballRb.freezeRotation = true;
             ballRb.constraints = RigidbodyConstraints2D.FreezePosition;
+            ballTransform.position = Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
+
         }
     }
 }

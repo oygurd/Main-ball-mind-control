@@ -7,22 +7,30 @@ public class ControlledMechanicVictim : MonoBehaviour
 {
     //in this script I want the victim to move randomly (with a bit of intention to go to the ball, and when touching the ball, movement is possible
 
+    [Header("Victim Parameters")]
     //vimctim parameters
-    [SerializeField] public Collider2D victimCollider;
+    [SerializeField]
+    public Collider2D victimCollider;
+
     [SerializeField] Rigidbody2D victimRigidbody;
     [SerializeField] float walkSpeed;
     [SerializeField] float jumpForce;
 
+    [Header("Ground Detection")]
     //ground detection
-    [SerializeField] LayerMask groundLayer = 3;
+    [SerializeField]
+    LayerMask groundLayer = 3;
+
     [SerializeField] bool isGrounded;
     [SerializeField] float rayDistance;
     [SerializeField] int jumpCount;
     [SerializeField] private bool didJump;
 
-
+    [Header("Ball Parameters")]
     //ball parameters
-    [SerializeField] private bool isHeld;
+    [SerializeField]
+    private bool isHeld;
+
     [SerializeField] Transform ballTransform;
     [SerializeField] Rigidbody2D ballRb;
     [SerializeField] CircleCollider2D ballCollider;
@@ -60,7 +68,7 @@ public class ControlledMechanicVictim : MonoBehaviour
 
         jumpCount = 1;
         didJump = false;
-        
+
         //inputsystem
         MoveInputAction = InputSystem.actions.FindAction("Move");
         JumpInputAction = InputSystem.actions.FindAction("Jump");

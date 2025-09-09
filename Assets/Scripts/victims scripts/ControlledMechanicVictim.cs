@@ -15,6 +15,17 @@ public class ControlledMechanicVictim : MonoBehaviour
     [SerializeField] Rigidbody2D victimRigidbody;
     [SerializeField] float walkSpeed;
     [SerializeField] float jumpForce;
+    [SerializeField] float airTime;
+    [SerializeField] float airTimeSetter;
+
+    public enum MovementState
+    {
+        Idle,
+        Walk,
+        Jump
+    }
+
+    public MovementState movementState; //referencer for the movementstate enum
 
     [Header("Ground Detection")]
     //ground detection
@@ -34,7 +45,7 @@ public class ControlledMechanicVictim : MonoBehaviour
     [SerializeField] Transform ballTransform;
     [SerializeField] Rigidbody2D ballRb;
     [SerializeField] CircleCollider2D ballCollider;
-
+    
     //using inputsystem
     InputAction MoveInputAction;
     private Vector2 InputmoveValue;
@@ -42,23 +53,6 @@ public class ControlledMechanicVictim : MonoBehaviour
 
 
     public Transform ballHolderInVictim;
-
-
-    public enum MovementState
-    {
-        Idle,
-        Walk,
-        Jump,
-        ThrowBall
-    }
-
-    public MovementState movementState; //referencer for the movementstate enum
-
-    public enum Attack
-    {
-        Punch,
-        Shoot,
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -98,23 +92,9 @@ public class ControlledMechanicVictim : MonoBehaviour
         ballTransform.position =
             Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
 
-        //managing the ground detection -----------------
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, ~groundLayer);
-
-        if (hit.collider != null)
-        {
-            isGrounded = true;
-            jumpCount = 1;
-            didJump = false;
-        }
-        else if (hit.collider == null)
-        {
-            isGrounded = false;
-            jumpCount = 0;
-            didJump = true;
-        }
 
         UpdateState();
+        RaycastGroundCheck();
     }
 
     private void FixedUpdate()
@@ -166,6 +146,39 @@ public class ControlledMechanicVictim : MonoBehaviour
     }
 
     #endregion
+
+    public void RaycastGroundCheck()
+    {
+        //managing the ground detection -----------------
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, ~groundLayer);
+
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+            jumpCount = 1;
+            didJump = false;
+            airTime = airTimeSetter;
+            victimRigidbody.gravityScale = 1f;
+            victimRigidbody.linearDamping = 5;
+
+        }
+        else if (hit.collider == null)
+        {
+            isGrounded = false;
+            jumpCount = 0;
+            didJump = true;
+
+            if (airTime != 0)
+            {
+                airTime -= 1 * Time.deltaTime;
+                if (airTime <= 0)
+                {
+                    victimRigidbody.gravityScale = 4;
+                    victimRigidbody.linearDamping = 2;
+                }
+            }
+        }
+    }
 
     private void OnDrawGizmos()
     {

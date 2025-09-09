@@ -547,30 +547,21 @@ MonoBehaviour:
   victimRigidbody: {fileID: 0}
   walkSpeed: 2
   jumpForce: 0.5
-  groundFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 55
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
+  airTime: 0.1
+  airTimeSetter: 0.2
+  movementState: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   isGrounded: 0
   rayDistance: 0.45
+  jumpCount: 0
+  didJump: 0
   isHeld: 0
   ballTransform: {fileID: 0}
   ballRb: {fileID: 0}
+  ballCollider: {fileID: 0}
   ballHolderInVictim: {fileID: 1860622000}
-  movementState: 0
 --- !u!212 &937530907
 SpriteRenderer:
   m_ObjectHideFlags: 0

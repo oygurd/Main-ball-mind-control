@@ -1,11 +1,13 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ControlledMechanicVictim : MonoBehaviour
 {
-    //in this script I want the victim to move randomly (with a bit of intention to go to the ball, and when touching the ball, movement is possible
+    //using the scriptable object for the victims
+    public VictimClassScriptableObject victimClassReference;
 
     [Header("Victim Parameters")]
     //vimctim parameters
@@ -18,6 +20,7 @@ public class ControlledMechanicVictim : MonoBehaviour
     [SerializeField] float airTime;
     [SerializeField] float airTimeSetter;
 
+   
     public enum MovementState
     {
         Idle,
@@ -54,9 +57,18 @@ public class ControlledMechanicVictim : MonoBehaviour
 
     public Transform ballHolderInVictim;
 
+    private void Awake()
+    {
+        
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
+        
+        
+        
         victimCollider = GetComponent<Collider2D>();
         victimRigidbody = GetComponent<Rigidbody2D>();
 

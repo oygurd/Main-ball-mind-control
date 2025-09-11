@@ -9,6 +9,8 @@ public class ControlledMechanicVictim : MonoBehaviour
     //using the scriptable object for the victims
     public VictimClassScriptableObject victimClassReference;
 
+    #region Victim Parameters
+
     [Header("Victim Parameters")]
     //vimctim parameters
     [SerializeField]
@@ -20,7 +22,7 @@ public class ControlledMechanicVictim : MonoBehaviour
     [SerializeField] float airTime;
     [SerializeField] float airTimeSetter;
 
-   
+
     public enum MovementState
     {
         Idle,
@@ -29,6 +31,10 @@ public class ControlledMechanicVictim : MonoBehaviour
     }
 
     public MovementState movementState; //referencer for the movementstate enum
+
+    #endregion
+
+    #region Ground Parameters
 
     [Header("Ground Detection")]
     //ground detection
@@ -40,6 +46,9 @@ public class ControlledMechanicVictim : MonoBehaviour
     [SerializeField] int jumpCount;
     [SerializeField] private bool didJump;
 
+    #endregion
+
+
     [Header("Ball Parameters")]
     //ball parameters
     [SerializeField]
@@ -48,7 +57,7 @@ public class ControlledMechanicVictim : MonoBehaviour
     [SerializeField] Transform ballTransform;
     [SerializeField] Rigidbody2D ballRb;
     [SerializeField] CircleCollider2D ballCollider;
-    
+
     //using inputsystem
     InputAction MoveInputAction;
     private Vector2 InputmoveValue;
@@ -59,16 +68,14 @@ public class ControlledMechanicVictim : MonoBehaviour
 
     private void Awake()
     {
+        walkSpeed = victimClassReference.speed;
+        jumpForce = victimClassReference.jumpForce;
         
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        
-        
-        
         victimCollider = GetComponent<Collider2D>();
         victimRigidbody = GetComponent<Rigidbody2D>();
 
@@ -108,11 +115,7 @@ public class ControlledMechanicVictim : MonoBehaviour
         UpdateState();
         RaycastGroundCheck();
     }
-
-    private void FixedUpdate()
-    {
-    }
-
+    
     public void UpdateState()
     {
         if (ballTransform == null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
@@ -172,7 +175,6 @@ public class ControlledMechanicVictim : MonoBehaviour
             airTime = airTimeSetter;
             victimRigidbody.gravityScale = 1f;
             victimRigidbody.linearDamping = 5;
-
         }
         else if (hit.collider == null)
         {

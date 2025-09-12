@@ -1,54 +1,41 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 [CreateAssetMenu(fileName = "VictimClassScriptableObject", menuName = "Scriptable Objects/VictimClassScriptableObject",
     order = 1)]
 public class VictimClassScriptableObject : ScriptableObject
 {
-    public string name;
-    public Sprite sprite;
+    [SerializeField] private string name;
+    [SerializeField] private Sprite sprite;
 
-
-    public MeleeTypeWeaponScript meleeClassScriptable;
-    public RangedTypeWeaponScript rangedClassScriptable;
-
-    public enum WeaponType
+    [SerializeField] private WeaponConfig _weaponsConfig;
+    [SerializeField]  private float[] extraParameter;
+    public void ChangeBetweenTypes()
     {
-        Melee,
-        Ranged
-    }
-
-    public float WeaponPower;
-    public float WeaponRange;
-
-    [SerializeField] WeaponType _weaponType;
-
-    public WeaponType typeSwitch()
-    {
-        switch (_weaponType)
+        switch (_weaponsConfig)
         {
-            case WeaponType.Melee:
-                if (meleeClassScriptable != null)
-                {
-                    WeaponPower = meleeClassScriptable.power;
-                    WeaponRange = meleeClassScriptable.range;
-                }
-
+            case RangedWeaponParameters rangeWeapon:
+                extraParameter[1] = rangeWeapon.Ammo;
                 break;
-            case WeaponType.Ranged:
-                if (rangedClassScriptable != null)
-                {
-                    WeaponPower = rangedClassScriptable.power;
-                    WeaponRange = rangedClassScriptable.range;
-                }
-                break;
+           case MeleeWeaponParameters meleeWeapon:
+               break;
+                
         }
-
-        return _weaponType;
     }
-
+    
     public int maxHealth;
     public int currentHealth;
 
     public float speed;
     public float jumpForce;
+
+    public class onGameStartCheckType : MonoBehaviour
+    {
+        VictimClassScriptableObject victimClassReference;
+        private void Start()
+        {
+            victimClassReference.ChangeBetweenTypes();
+        }
+    }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   name: 
   sprite: {fileID: 0}
   _weaponsConfig: {fileID: 11400000, guid: 5f1ec09c2e1e2494a9a4b30900f01f65, type: 2}
-  extraParameter: []
+  parameters: []
   maxHealth: 0
   currentHealth: 0
   speed: 0

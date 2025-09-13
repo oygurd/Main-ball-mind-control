@@ -71,11 +71,15 @@ public class ControlledMechanicVictim : MonoBehaviour
         walkSpeed = victimClassReference.speed;
         jumpForce = victimClassReference.jumpForce;
         
+        victimClassReference.GetTypes();
+        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+       
+        
         victimCollider = GetComponent<Collider2D>();
         victimRigidbody = GetComponent<Rigidbody2D>();
 

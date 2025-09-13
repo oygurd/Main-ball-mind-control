@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Victims%20UI/Stats.uss?fileID=7433441132597879392&amp;guid=06fe25f0af36e5e47b871dccd83762e8&amp;type=3#Stats" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; scale: 0.1 0.3; translate: 20px 157px;">
+            <ui:Label text="Label" />
+        </ui:VisualElement>
+        <ui:Button text="Show Stats" name="Button" class="unity-button" style="white-space: pre; -unity-text-align: middle-left; align-items: flex-end; justify-content: flex-end; align-self: auto; transform-origin: center; align-content: stretch; -unity-font-style: bold; font-size: 39px; height: 56px; width: 280px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); -unity-background-scale-mode: stretch-to-fill;" />
+    </ui:VisualElement>
+</ui:UXML>

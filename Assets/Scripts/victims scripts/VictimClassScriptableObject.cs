@@ -12,7 +12,7 @@ public class VictimClassScriptableObject : ScriptableObject
     [SerializeField] private string name;
     [SerializeField] private Sprite sprite;
 
-    [SerializeField] public WeaponConfig _weaponsConfig;
+
     
     public int maxHealth;
     public int currentHealth;

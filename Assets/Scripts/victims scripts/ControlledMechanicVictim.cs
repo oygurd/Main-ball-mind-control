@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 public class ControlledMechanicVictim : MonoBehaviour
 {
     //using the scriptable object for the victims
-    public VictimClassScriptableObject victimClassReference;
+    public ClassManagerConfig victimClassReference;
+    
+    [Header("Class Inputs")]
 
     #region Victim Parameters
 
@@ -68,16 +70,15 @@ public class ControlledMechanicVictim : MonoBehaviour
 
     private void Awake()
     {
-        walkSpeed = victimClassReference.speed;
-        jumpForce = victimClassReference.jumpForce;
+        walkSpeed = victimClassReference.movementSpeed;
+        jumpForce = victimClassReference.JumpStrength;
+
         
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
-        
         victimCollider = GetComponent<Collider2D>();
         victimRigidbody = GetComponent<Rigidbody2D>();
 

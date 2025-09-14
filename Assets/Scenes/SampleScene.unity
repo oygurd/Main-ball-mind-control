@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe925213f541844c94862a317f71d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlledMechanicVictim
-  victimClassReference: {fileID: 11400000, guid: 2f331c6b5d023404caf227ac55033c37, type: 2}
+  victimClassReference: {fileID: 0}
   victimCollider: {fileID: 0}
   victimRigidbody: {fileID: 0}
   walkSpeed: 2

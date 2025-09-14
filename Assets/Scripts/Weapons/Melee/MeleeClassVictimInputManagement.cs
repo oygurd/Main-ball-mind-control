@@ -1,7 +1,17 @@
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class MeleeClassVictimInputManagement : MonoBehaviour
 {
+    private InputAction AttackInput;
+    private InputAction dashAtackInput;
+    public enum MeleeActions
+    {
+        Idle,
+        Attack,
+        DashAtack
+    }
+    private MeleeActions actions;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +22,16 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UpdateStates()
+    {
+        
+        
+    }
+
+    public void Idle()
+    {
+      
     }
 }

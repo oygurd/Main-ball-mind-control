@@ -1,24 +1,21 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ControlledMechanicVictim : MonoBehaviour
 {
     //using the scriptable object for the victims
+    [Header("Scriptable Object class reference here")]
     public ClassManagerConfig victimClassReference;
-    
-    [Header("Class Inputs")]
+
+    [Header("Class Inputs")] public MeleeClassVictimInputManagement meleeClass;
+
 
     #region Victim Parameters
 
     [Header("Victim Parameters")]
     //vimctim parameters
-    [SerializeField]
-    public Collider2D victimCollider;
+    private Rigidbody2D victimRigidbody;
 
-    [SerializeField] Rigidbody2D victimRigidbody;
     [SerializeField] float walkSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] float airTime;
@@ -72,14 +69,12 @@ public class ControlledMechanicVictim : MonoBehaviour
     {
         walkSpeed = victimClassReference.movementSpeed;
         jumpForce = victimClassReference.JumpStrength;
-
-        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        victimCollider = GetComponent<Collider2D>();
+        //victimCollider = GetComponent<Collider2D>();
         victimRigidbody = GetComponent<Rigidbody2D>();
 
         jumpCount = 1;
@@ -114,11 +109,10 @@ public class ControlledMechanicVictim : MonoBehaviour
         ballTransform.position =
             Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
 
-
         UpdateState();
         RaycastGroundCheck();
     }
-    
+
     public void UpdateState()
     {
         if (ballTransform == null && MoveInputAction.ReadValue<Vector2>() != Vector2.zero)
@@ -165,7 +159,11 @@ public class ControlledMechanicVictim : MonoBehaviour
 
     #endregion
 
-    public void RaycastGroundCheck()
+
+    //animations will be from here in the future
+
+
+    private void RaycastGroundCheck()
     {
         //managing the ground detection -----------------
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, ~groundLayer);

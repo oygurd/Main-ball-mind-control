@@ -23,6 +23,7 @@ public class RangedWeaponParameters : ClassManagerConfig
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/MeleeConfig")]
 public class MeleeWeaponParameters : ClassManagerConfig
 {
+    [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public float extraHP { get; private set; }
     [field: SerializeField] public float range { get; private set; }
     [field: SerializeField] public float attackSpeed { get; private set; }

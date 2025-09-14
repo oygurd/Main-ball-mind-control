@@ -2,45 +2,38 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using UnityEditor;
 
 [Serializable]
 [CreateAssetMenu(fileName = "WeaponConfig", menuName = "Scriptable Objects/WeaponConfig")]
+[AddComponentMenu("test")]
 public class WeaponConfig : ScriptableObject
 {
-    /*[SerializeField] private float damage;
-    [SerializeField] private float range;
-    [SerializeField] private float fireRate;
-    [SerializeField] private float reloadTime;*/
-
-    [SerializeField] public string[] TypesNames =
-    {
-        "Speed",
-        "JumpHeight",
-        "Damage",
-        "Range",
-        "Fire Rate",
-        "Reload Time",
-        "extraHP",
-    };
-
-    [SerializeField] public List<float> TypesValues;
+    public string weaponName;
 }
 
 
-/*[Serializable]
+[Serializable]
 [CreateAssetMenu(fileName = "WeaponConfig", menuName = "Scriptable Objects/RangedConfig")]
 public class RangedWeaponParameters : WeaponConfig
 {
+    [field: SerializeField] public Sprite icon { get; private set; }
+    public GameObject weaponPrefab;
+    [field: SerializeField] public float damage { get; private set; }
     [field: SerializeField] public int Ammo { get; private set; }
+    [field: SerializeField] public int MaxAmmo { get; private set; }
+    [field: SerializeField] public float weaponRange { get; private set; }
 }
-
+[Serializable]
 [CreateAssetMenu(fileName = "WeaponConfig", menuName = "Scriptable Objects/MeleeConfig")]
 public class MeleeWeaponParameters : WeaponConfig
 {
     [field: SerializeField] public float extraHP { get; private set; }
+    [field: SerializeField] public float range { get; private set; }
+    [field: SerializeField] public float attackSpeed { get; private set; }
 }
 
-public class TypeChanger : MonoBehaviour
+/*public class TypeChanger : MonoBehaviour
 {
     WeaponConfig _weaponConfigType;
     private void Start()

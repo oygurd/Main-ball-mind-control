@@ -35,12 +35,6 @@ public class ControlMechanicBall : MonoBehaviour
 
     public MovementState movementState;
 
-    public enum Attack
-    {
-        Punch,
-        Shoot,
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -101,8 +95,8 @@ public class ControlMechanicBall : MonoBehaviour
         if (InputmoveValue.x != 0)
         {
             //ball.transform.position = victimCollider.bounds.center;
-           // rb.AddForceX(InputmoveValue.x * walkSpeed, ForceMode2D.Force);
-           victimRb.AddForce(InputmoveValue * walkSpeed, ForceMode2D.Force);
+            // rb.AddForceX(InputmoveValue.x * walkSpeed, ForceMode2D.Force);
+            victimRb.AddForce(InputmoveValue * walkSpeed, ForceMode2D.Force);
         }
     }
 
@@ -121,13 +115,9 @@ public class ControlMechanicBall : MonoBehaviour
             ballHolder = victimCollider.transform.Find("Ball holder");
             isHeld = true;
 
-            //victimRb.simulated = false;
-           // rb.freezeRotation = true;
-          // rb.simulated = false;    
+
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
             transform.position = ballHolder.position;
-            //VictimTransform.position = transform.position;
-            //victimCollider.transform.parent = gameObject.transform;
         }
     }
 }

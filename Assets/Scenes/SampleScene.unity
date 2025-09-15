@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &397601780
 Transform:
   m_ObjectHideFlags: 0
@@ -300,6 +300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20580c646ae185949bc0f63214aa0841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeClassVictimInputManagement
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  melee: {fileID: 11400000, guid: 8907c96fef8481d4b83d1754601aa22f, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +866,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlledMechanicVictim
   victimClassReference: {fileID: 11400000, guid: 8907c96fef8481d4b83d1754601aa22f, type: 2}
-  meleeClass: {fileID: 397601781}
+  meleeClass: {fileID: 397601779}
+  rangedClass: {fileID: 1671439467}
   walkSpeed: 2
   jumpForce: 0.5
   airTime: 0.1
@@ -947,7 +952,7 @@ Transform:
   m_GameObject: {fileID: 937530903}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: -1.57, z: 0}
+  m_LocalPosition: {x: 1.55, y: -3.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1028,7 +1033,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &937530911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,7 +1114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1671439468
 Transform:
   m_ObjectHideFlags: 0
@@ -1502,7 +1507,6 @@ GameObject:
   - component: {fileID: 2146074925}
   - component: {fileID: 2146074928}
   - component: {fileID: 2146074927}
-  - component: {fileID: 2146074929}
   - component: {fileID: 2146074930}
   m_Layer: 0
   m_Name: ball (player)
@@ -1647,28 +1651,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &2146074929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146074924}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a21f3276ff224248be95cc49fc64048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControlMechanicBall
-  ball: {fileID: 0}
-  ballCollider: {fileID: 0}
-  rb: {fileID: 0}
-  isHeld: 0
-  victimCollider: {fileID: 0}
-  victimRb: {fileID: 0}
-  VictimTransform: {fileID: 0}
-  ballHolder: {fileID: 0}
-  walkSpeed: 2
-  movementState: 0
 --- !u!114 &2146074930
 MonoBehaviour:
   m_ObjectHideFlags: 0

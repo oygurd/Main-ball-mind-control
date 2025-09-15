@@ -7,8 +7,9 @@ public class ControlledMechanicVictim : MonoBehaviour
     [Header("Scriptable Object class reference here")]
     public ClassManagerConfig victimClassReference;
 
-    [Header("Class Inputs")] public MeleeClassVictimInputManagement meleeClass;
-
+    [Header("Class Inputs")] //this function is meant to be used as a switch between classes based on what it got on the start of the game
+    public GameObject meleeClass;
+    public GameObject rangedClass;
 
     #region Victim Parameters
 
@@ -224,6 +225,19 @@ public class ControlledMechanicVictim : MonoBehaviour
             ballRb.constraints = RigidbodyConstraints2D.FreezePosition;
             ballTransform.position =
                 Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
+
+
+            //check which class the victim has
+            if (victimClassReference is MeleeWeaponParameters melee)
+            {
+                meleeClass.SetActive(true);
+                rangedClass.SetActive(false);
+            }
+            else if (victimClassReference is RangedWeaponParameters ranged)
+            {
+                meleeClass.SetActive(false);
+                rangedClass.SetActive(true);
+            }
         }
     }
 }

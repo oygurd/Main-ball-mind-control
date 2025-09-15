@@ -863,8 +863,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ControlledMechanicVictim
   victimClassReference: {fileID: 11400000, guid: 8907c96fef8481d4b83d1754601aa22f, type: 2}
   meleeClass: {fileID: 397601781}
-  victimCollider: {fileID: 0}
-  victimRigidbody: {fileID: 0}
   walkSpeed: 2
   jumpForce: 0.5
   airTime: 0.1

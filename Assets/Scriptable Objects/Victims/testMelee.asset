@@ -19,3 +19,4 @@ MonoBehaviour:
   <extraHP>k__BackingField: 0
   <range>k__BackingField: 1
   <attackSpeed>k__BackingField: 0
+  <attackCD>k__BackingField: 1

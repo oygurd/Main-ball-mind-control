@@ -14,6 +14,8 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
 
     ControlledMechanicVictim victimScript;
 
+    public bool canAttack;
+
     //public ClassManagerConfig ClassManager;
     [SerializeField] MeleeWeaponParameters melee;
 
@@ -31,6 +33,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     {
         AttackInput = InputSystem.actions.FindAction("Attack");
         dashAtackInput = InputSystem.actions.FindAction("Dash Attack");
+        canAttack = true;
     }
 
     // Update is called once per frame
@@ -42,6 +45,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
                 Debug.Log("Currently attacking");
                 break;
         }
+
         // attackRaycast = Physics2D.Raycast(transform.position, transform.right, melee.range, layerMask );
         UpdateStates();
     }
@@ -53,7 +57,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
             actions = MeleeActions.Idle;
             enableGizmo = false;
         }
-        else if (AttackInput.IsPressed())
+        else if (AttackInput.IsPressed() && canAttack)
         {
             Attack();
             actions = MeleeActions.Attack;
@@ -63,17 +67,23 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     public void Attack()
     {
         enableGizmo = true;
-        //   StartCoroutine(AttackCD());
+        canAttack = false;
+        StartCoroutine(AttackCD());
         //play the animation
 
         //check for raycasts
-        attackRaycast = Physics2D.Raycast(transform.position, transform.forward, melee.range, 3);
+        attackRaycast = Physics2D.Raycast(transform.position, transform.forward, melee.range, layerMask);
         if (attackRaycast.collider != null)
         {
             Debug.Log("Hitting" + attackRaycast.collider.name);
         }
     }
-
+    public IEnumerator AttackCD()
+    {
+        yield return new WaitForSeconds(melee.attackCD);
+        canAttack = true;
+    }
+    
     public void DashAtack()
     {
     }
@@ -88,8 +98,5 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     }
 
 
-    /*public IEnumerator AttackCD()
-    {
-
-    }*/
+   
 }

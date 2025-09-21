@@ -29,5 +29,7 @@ public class MeleeWeaponParameters : ClassManagerConfig
     [field: SerializeField] public float range { get; private set; }
     [field: SerializeField] public float attackSpeed { get; private set; }
     [field: SerializeField] public float attackCD { get; private set; }
+    [field: SerializeField] public GameObject prefab { get; private set; }
+
 
 }

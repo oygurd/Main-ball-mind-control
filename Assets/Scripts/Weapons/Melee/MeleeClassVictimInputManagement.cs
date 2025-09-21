@@ -15,6 +15,12 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     ControlledMechanicVictim victimScript;
 
     public bool canAttack;
+    
+    //animations
+    [SerializeField] private Animator animations;
+        
+    
+    
 
     //public ClassManagerConfig ClassManager;
     [SerializeField] MeleeWeaponParameters melee;
@@ -89,6 +95,13 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     }
 
 
+    
+    
+    
+    
+    
+    
+    
     private void OnDrawGizmos()
     {
         if (AttackInput.IsPressed() && enableGizmo)
@@ -97,6 +110,8 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         }
     }
 
+    
+    
 
    
 }

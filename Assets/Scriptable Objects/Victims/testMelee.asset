@@ -17,6 +17,10 @@ MonoBehaviour:
   JumpStrength: 0.5
   <icon>k__BackingField: {fileID: 0}
   <extraHP>k__BackingField: 0
+  <DashStrengthX>k__BackingField: 10
+  <DashStrengthY>k__BackingField: 2
   <range>k__BackingField: 1
   <attackSpeed>k__BackingField: 0
   <attackCD>k__BackingField: 1
+  <dashAttackCD>k__BackingField: 1
+  <prefab>k__BackingField: {fileID: 4932919213771005843, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}

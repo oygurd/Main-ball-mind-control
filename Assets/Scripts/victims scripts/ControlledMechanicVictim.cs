@@ -9,12 +9,13 @@ public class ControlledMechanicVictim : MonoBehaviour
 
     [Header("Class Inputs")] //this function is meant to be used as a switch between classes based on what it got on the start of the game
     public GameObject meleeClass;
+
     public GameObject rangedClass;
 
     #region Victim Parameters
 
     [Header("Victim Parameters")]
-    //vimctim parameters
+    //victim parameters
     private Rigidbody2D victimRigidbody;
 
     [SerializeField] float walkSpeed;
@@ -59,9 +60,9 @@ public class ControlledMechanicVictim : MonoBehaviour
     [SerializeField] CircleCollider2D ballCollider;
 
     //using inputsystem
-    InputAction MoveInputAction;
-    private Vector2 InputmoveValue;
-    InputAction JumpInputAction;
+    [HideInInspector] public InputAction MoveInputAction;
+    [HideInInspector] public Vector2 InputmoveValue;
+    [HideInInspector] public InputAction JumpInputAction;
 
 
     public Transform ballHolderInVictim;
@@ -99,6 +100,12 @@ public class ControlledMechanicVictim : MonoBehaviour
                 Debug.Log("Currently Walking");
                 ballTransform.position =
                     Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
+
+                if (InputmoveValue.x != 0)
+                {
+                    transform.localScale = new Vector3(InputmoveValue.x, 1, 1);
+                }
+
                 Walk();
                 break;
             case MovementState.Jump:

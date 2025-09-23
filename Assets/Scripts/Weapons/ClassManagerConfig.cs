@@ -26,10 +26,17 @@ public class MeleeWeaponParameters : ClassManagerConfig
 {
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public float extraHP { get; private set; }
+    [field: SerializeField] public float DashStrengthX { get; private set; }
+    [field: SerializeField] public float DashStrengthY { get; private set; }
+
+
     [field: SerializeField] public float range { get; private set; }
     [field: SerializeField] public float attackSpeed { get; private set; }
     [field: SerializeField] public float attackCD { get; private set; }
+    [field: SerializeField] public float dashAttackCD { get; private set; }
+
     [field: SerializeField] public GameObject prefab { get; private set; }
+    
 
 
 }

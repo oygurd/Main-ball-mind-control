@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,15 +16,21 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     ControlledMechanicVictim victimScript;
 
     public bool canAttack;
-    
+    public bool canDash;
+
+    //player
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Rigidbody2D playerRb;
+
     //animations
     [SerializeField] private Animator animations;
-        
-    
-    
+
 
     //public ClassManagerConfig ClassManager;
     [SerializeField] MeleeWeaponParameters melee;
+
+    //prefab
+    private GameObject weapon;
 
     public enum MeleeActions
     {
@@ -32,7 +39,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         DashAtack
     }
 
-    private MeleeActions actions;
+    public MeleeActions actions;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +47,10 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         AttackInput = InputSystem.actions.FindAction("Attack");
         dashAtackInput = InputSystem.actions.FindAction("Dash Attack");
         canAttack = true;
+        canDash = true;
+
+        playerRb = GetComponentInParent<Rigidbody2D>();
+        playerTransform = GetComponentInParent<Transform>();
     }
 
     // Update is called once per frame
@@ -49,6 +60,9 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         {
             case MeleeActions.Attack:
                 Debug.Log("Currently attacking");
+                break;
+            case MeleeActions.DashAtack:
+                Debug.Log("Currently Dashing");
                 break;
         }
 
@@ -68,6 +82,11 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
             Attack();
             actions = MeleeActions.Attack;
         }
+        else if (dashAtackInput.IsPressed() && canDash)
+        {
+            DashAtack();
+            actions = MeleeActions.DashAtack;
+        }
     }
 
     public void Attack()
@@ -84,24 +103,28 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
             Debug.Log("Hitting" + attackRaycast.collider.name);
         }
     }
+
     public IEnumerator AttackCD()
     {
         yield return new WaitForSeconds(melee.attackCD);
         canAttack = true;
     }
-    
+
     public void DashAtack()
     {
+        canDash = false;
+        playerRb.AddForceX(playerTransform.lossyScale.x * melee.DashStrengthX, ForceMode2D.Impulse);
+        playerRb.AddForceY(melee.DashStrengthY,ForceMode2D.Impulse);
+        StartCoroutine(DashAttackCD());
+    }
+
+    public IEnumerator DashAttackCD()
+    {
+        yield return new WaitForSeconds(melee.dashAttackCD);
+        canDash = true;
     }
 
 
-    
-    
-    
-    
-    
-    
-    
     private void OnDrawGizmos()
     {
         if (AttackInput.IsPressed() && enableGizmo)
@@ -110,8 +133,9 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         }
     }
 
-    
-    
-
-   
+    private void OnEnable()
+    {
+        //weapon
+        weapon = Instantiate(melee.prefab, transform.position, transform.rotation, transform);
+    }
 }

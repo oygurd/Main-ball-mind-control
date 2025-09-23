@@ -18,7 +18,7 @@ MonoBehaviour:
   <icon>k__BackingField: {fileID: 0}
   <extraHP>k__BackingField: 0
   <DashStrengthX>k__BackingField: 10
-  <DashStrengthY>k__BackingField: 2
+  <DashStrengthY>k__BackingField: 0.1
   <range>k__BackingField: 1
   <attackSpeed>k__BackingField: 0
   <attackCD>k__BackingField: 1

@@ -112,9 +112,12 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
 
     public void DashAtack()
     {
+        playerRb.gravityScale = 0;
         canDash = false;
         playerRb.AddForceX(playerTransform.lossyScale.x * melee.DashStrengthX, ForceMode2D.Impulse);
         playerRb.AddForceY(melee.DashStrengthY,ForceMode2D.Impulse);
+        playerRb.gravityScale = 1;
+
         StartCoroutine(DashAttackCD());
     }
 

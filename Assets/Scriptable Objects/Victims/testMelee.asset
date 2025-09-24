@@ -15,9 +15,9 @@ MonoBehaviour:
   weaponName: 
   movementSpeed: 2
   JumpStrength: 0.5
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 9108365968018652678, guid: dc858fd2324da2c4f9fb8e29c0f3f9a4, type: 3}
   <extraHP>k__BackingField: 0
-  <DashStrengthX>k__BackingField: 10
+  <DashStrengthX>k__BackingField: 5
   <DashStrengthY>k__BackingField: 0.1
   <range>k__BackingField: 1
   <attackSpeed>k__BackingField: 0

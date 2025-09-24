@@ -266,14 +266,13 @@ GameObject:
   m_Component:
   - component: {fileID: 397601780}
   - component: {fileID: 397601781}
-  - component: {fileID: 397601782}
   m_Layer: 3
   m_Name: melee Class Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &397601780
 Transform:
   m_ObjectHideFlags: 0
@@ -306,30 +305,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   canAttack: 0
-  animations: {fileID: 0}
+  canDash: 0
+  playerTransform: {fileID: 937530908}
+  playerRb: {fileID: 0}
+  animationHandler: {fileID: 0}
   melee: {fileID: 11400000, guid: 8907c96fef8481d4b83d1754601aa22f, type: 2}
---- !u!95 &397601782
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 397601779}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  actions: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,6 +891,25 @@ MonoBehaviour:
   ballTransform: {fileID: 0}
   ballRb: {fileID: 0}
   ballCollider: {fileID: 0}
+  MoveInputAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cd7490e4-f8ba-4dd4-9051-70ec131dc436
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  InputmoveValue: {x: 0, y: 0}
+  JumpInputAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: af2d80d2-2308-41d4-b986-bdf04aa2f5ba
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   ballHolderInVictim: {fileID: 1860622000}
 --- !u!212 &937530907
 SpriteRenderer:

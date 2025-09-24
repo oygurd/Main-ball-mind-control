@@ -23,8 +23,8 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRb;
 
     //animations
-    [SerializeField] private Animator animations;
-
+    [SerializeField] Melee_AnimationsHandler animationHandler;
+    [SerializeField] bool canIdle;
 
     //public ClassManagerConfig ClassManager;
     [SerializeField] MeleeWeaponParameters melee;
@@ -41,6 +41,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
 
     public MeleeActions actions;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,7 +51,6 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         canDash = true;
 
         playerRb = GetComponentInParent<Rigidbody2D>();
-        playerTransform = GetComponentInParent<Transform>();
     }
 
     // Update is called once per frame
@@ -74,12 +74,18 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     {
         if (AttackInput.IsPressed() == false && dashAtackInput.IsPressed() == false)
         {
-            actions = MeleeActions.Idle;
-            enableGizmo = false;
+            if (canIdle)
+            {
+                actions = MeleeActions.Idle;
+                animationHandler.IdleAnimationTrue();
+                enableGizmo = false;
+            }
         }
         else if (AttackInput.IsPressed() && canAttack)
         {
-            Attack();
+            Attack1();
+            animationHandler.AttackAnimation1True();
+
             actions = MeleeActions.Attack;
         }
         else if (dashAtackInput.IsPressed() && canDash)
@@ -89,13 +95,14 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public void Attack1()
     {
         enableGizmo = true;
         canAttack = false;
         StartCoroutine(AttackCD());
         //play the animation
-
+        animationHandler.AttackAnimation1True();
+        
         //check for raycasts
         attackRaycast = Physics2D.Raycast(transform.position, transform.forward, melee.range, layerMask);
         if (attackRaycast.collider != null)
@@ -110,12 +117,20 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         canAttack = true;
     }
 
+    public void Attack2()
+    {
+        
+    }
+    
+    
+    
     public void DashAtack()
     {
         playerRb.gravityScale = 0;
         canDash = false;
-        playerRb.AddForceX(playerTransform.lossyScale.x * melee.DashStrengthX, ForceMode2D.Impulse);
-        playerRb.AddForceY(melee.DashStrengthY,ForceMode2D.Impulse);
+        playerTransform.position =
+            new Vector3(playerTransform.lossyScale.x * melee.DashStrengthX, playerTransform.position.y);
+
         playerRb.gravityScale = 1;
 
         StartCoroutine(DashAttackCD());
@@ -132,7 +147,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     {
         if (AttackInput.IsPressed() && enableGizmo)
         {
-            Gizmos.DrawRay(transform.position, transform.right * melee.range);
+            Gizmos.DrawRay(transform.position, new Vector3(transform.lossyScale.x, 0, 0) * melee.range);
         }
     }
 
@@ -140,5 +155,6 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     {
         //weapon
         weapon = Instantiate(melee.prefab, transform.position, transform.rotation, transform);
+        animationHandler = GetComponentInChildren<Melee_AnimationsHandler>();
     }
 }

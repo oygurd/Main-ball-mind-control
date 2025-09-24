@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2125606026151638190}
   - component: {fileID: 6076796585560701650}
   - component: {fileID: 4495197838423712312}
+  - component: {fileID: 575054682780356309}
   m_Layer: 0
   m_Name: Katana_Prefab
   m_TagString: Untagged
@@ -104,7 +105,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 2900b1afa6892234cb250cd706354b57, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -113,3 +114,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &575054682780356309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932919213771005843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4cf072cf0353a47917890eaa569f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Melee_AnimationsHandler
+  meleeAnimator: {fileID: 0}

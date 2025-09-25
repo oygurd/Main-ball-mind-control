@@ -127,3 +127,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Melee_AnimationsHandler
   meleeAnimator: {fileID: 0}
+  attack1Duration: 0

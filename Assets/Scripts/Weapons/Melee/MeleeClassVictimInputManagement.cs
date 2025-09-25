@@ -36,6 +36,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     {
         Idle,
         Attack,
+        attack2,
         DashAtack
     }
 
@@ -49,6 +50,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         dashAtackInput = InputSystem.actions.FindAction("Dash Attack");
         canAttack = true;
         canDash = true;
+        canIdle = true;
 
         playerRb = GetComponentInParent<Rigidbody2D>();
     }
@@ -84,10 +86,23 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         else if (AttackInput.IsPressed() && canAttack)
         {
             Attack1();
+            canIdle = false;
             animationHandler.AttackAnimation1True();
-
             actions = MeleeActions.Attack;
+
+            float atckTime =0 ;
+            if (atckTime <= animationHandler.attack1Duration)
+            {
+                atckTime += Time.deltaTime;
+            }
+
+            if (atckTime >= animationHandler.attack1Duration && AttackInput.IsInProgress())
+            {
+                Attack2();
+                
+            }
         }
+        
         else if (dashAtackInput.IsPressed() && canDash)
         {
             DashAtack();
@@ -101,7 +116,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         canAttack = false;
         StartCoroutine(AttackCD());
         //play the animation
-        animationHandler.AttackAnimation1True();
+       // animationHandler.AttackAnimation1True();
         
         //check for raycasts
         attackRaycast = Physics2D.Raycast(transform.position, transform.forward, melee.range, layerMask);
@@ -115,10 +130,12 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     {
         yield return new WaitForSeconds(melee.attackCD);
         canAttack = true;
+        canIdle = true;
     }
 
     public void Attack2()
     {
+        animationHandler.AttackAnimation2True();
         
     }
     
@@ -155,6 +172,6 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     {
         //weapon
         weapon = Instantiate(melee.prefab, transform.position, transform.rotation, transform);
-        animationHandler = GetComponentInChildren<Melee_AnimationsHandler>();
+        animationHandler = gameObject.GetComponentInChildren<Melee_AnimationsHandler>();
     }
 }

@@ -4,6 +4,7 @@ public class Melee_AnimationsHandler : MonoBehaviour
 {
     [SerializeField] Animator meleeAnimator;
     public float attack1Duration;
+    public float attack2Duration;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +34,7 @@ public class Melee_AnimationsHandler : MonoBehaviour
         meleeAnimator.SetBool("isIdle", false);
         meleeAnimator.SetBool("attack1", false);
         meleeAnimator.SetBool("attack2", true);
+        attack2Duration = meleeAnimator.GetCurrentAnimatorStateInfo(0).length;
     }
 
     public void DashAnimation()

@@ -26,6 +26,8 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     [SerializeField] Melee_AnimationsHandler animationHandler;
     [SerializeField] bool canIdle;
 
+    public float atckTime = 0;
+
     //public ClassManagerConfig ClassManager;
     [SerializeField] MeleeWeaponParameters melee;
 
@@ -83,26 +85,21 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
                 enableGizmo = false;
             }
         }
+        
         else if (AttackInput.IsPressed() && canAttack)
         {
             Attack1();
             canIdle = false;
             animationHandler.AttackAnimation1True();
             actions = MeleeActions.Attack;
-
-            float atckTime =0 ;
-            if (atckTime <= animationHandler.attack1Duration)
-            {
-                atckTime += Time.deltaTime;
-            }
-
-            if (atckTime >= animationHandler.attack1Duration && AttackInput.IsInProgress())
-            {
-                Attack2();
-                
-            }
+            StartCoroutine(Attack1Duration());
         }
-        
+
+        if (AttackInput.IsPressed() == false)
+        {
+            atckTime = 0;
+        }
+
         else if (dashAtackInput.IsPressed() && canDash)
         {
             DashAtack();
@@ -115,8 +112,6 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         enableGizmo = true;
         canAttack = false;
         StartCoroutine(AttackCD());
-        //play the animation
-       // animationHandler.AttackAnimation1True();
         
         //check for raycasts
         attackRaycast = Physics2D.Raycast(transform.position, transform.forward, melee.range, layerMask);
@@ -133,14 +128,28 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         canIdle = true;
     }
 
+
+    public IEnumerator Attack1Duration()
+    {
+        yield return new WaitForSeconds(animationHandler.attack1Duration);
+        atckTime = 1;
+        StartCoroutine(Attack2Duration());
+    }
+
     public void Attack2()
     {
         animationHandler.AttackAnimation2True();
-        
     }
-    
-    
-    
+
+    public IEnumerator Attack2Duration()
+    {
+        yield return new WaitForSeconds(animationHandler.attack2Duration);
+        animationHandler.IdleAnimationTrue();
+        canIdle = true;
+        canAttack = false;
+    }
+
+
     public void DashAtack()
     {
         playerRb.gravityScale = 0;
@@ -156,7 +165,8 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     public IEnumerator DashAttackCD()
     {
         yield return new WaitForSeconds(melee.dashAttackCD);
-        canDash = true;
+        animationHandler.IdleAnimationTrue();
+        canAttack = false;
     }
 
 

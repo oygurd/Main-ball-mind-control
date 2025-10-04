@@ -90,21 +90,21 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         {
             Attack1();
             canIdle = false;
-            animationHandler.AttackAnimation1True();
             actions = MeleeActions.Attack;
             StartCoroutine(Attack1Duration());
         }
-
-        if (AttackInput.IsPressed() == false)
-        {
-            atckTime = 0;
-        }
-
         else if (dashAtackInput.IsPressed() && canDash)
         {
             DashAtack();
             actions = MeleeActions.DashAtack;
         }
+        
+        if (AttackInput.IsPressed() == false)
+        {
+            atckTime = 0;
+        }
+
+        
     }
 
     public void Attack1()
@@ -113,6 +113,9 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         canAttack = false;
         StartCoroutine(AttackCD());
         
+        //animation
+        animationHandler.AttackAnimation1True();
+
         //check for raycasts
         attackRaycast = Physics2D.Raycast(transform.position, transform.forward, melee.range, layerMask);
         if (attackRaycast.collider != null)
@@ -152,12 +155,12 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
 
     public void DashAtack()
     {
-        playerRb.gravityScale = 0;
-        canDash = false;
-        playerTransform.position =
-            new Vector3(playerTransform.lossyScale.x * melee.DashStrengthX, playerTransform.position.y);
+       // playerRb.gravityScale = 0;
+        playerTransform.position +=
+            new Vector3(playerTransform.localScale.x * melee.DashStrengthX, playerTransform.position.y * melee.DashStrengthY);
 
-        playerRb.gravityScale = 1;
+        //playerRb.gravityScale = 1;
+        canDash = false;
 
         StartCoroutine(DashAttackCD());
     }
@@ -165,7 +168,9 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     public IEnumerator DashAttackCD()
     {
         yield return new WaitForSeconds(melee.dashAttackCD);
+        canDash = true;
         animationHandler.IdleAnimationTrue();
+        canAttack = true;
         canAttack = false;
     }
 

@@ -3,6 +3,7 @@ using System;
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/ClassManagerConfig")]
 public class ClassManagerConfig : ScriptableObject
 {
+    public float Health;
     public string weaponName;
     public float movementSpeed;
     public float JumpStrength;
@@ -34,8 +35,11 @@ public class MeleeWeaponParameters : ClassManagerConfig
     [field: SerializeField] public float attackSpeed { get; private set; }
     [field: SerializeField] public float attackCD { get; private set; }
     [field: SerializeField] public float dashAttackCD { get; private set; }
+    [field: SerializeField] public float parryWindup { get; private set; }
+
 
     [field: SerializeField] public GameObject prefab { get; private set; }
+    
     
 
 

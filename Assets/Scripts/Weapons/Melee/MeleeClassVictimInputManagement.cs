@@ -23,16 +23,20 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRb;
 
     //animations
-    [SerializeField] Melee_AnimationsHandler animationHandler;
+    //[SerializeField] Melee_AnimationsHandler animationHandler;
     [SerializeField] bool canIdle;
+    
+    //New animations management
+    [SerializeField] Melee_AnimationsHandler animationHandler;
+    
 
     public float atckTime = 0;
 
     //public ClassManagerConfig ClassManager;
     [SerializeField] MeleeWeaponParameters melee;
 
-    //prefab
-    private GameObject weapon;
+    //prefab instantiating
+    [SerializeField] GameObject weapon;
 
     public enum MeleeActions
     {
@@ -91,7 +95,7 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
             Attack1();
             canIdle = false;
             actions = MeleeActions.Attack;
-            StartCoroutine(Attack1Duration());
+            StartCoroutine(Attack1AnimationDuration());
         }
         else if (dashAtackInput.IsPressed() && canDash)
         {
@@ -132,11 +136,16 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
     }
 
 
-    public IEnumerator Attack1Duration()
+    public IEnumerator Attack1AnimationDuration()
     {
         yield return new WaitForSeconds(animationHandler.attack1Duration);
         atckTime = 1;
-        StartCoroutine(Attack2Duration());
+        
+        if (AttackInput.IsInProgress())
+        {
+            Attack2();
+            StartCoroutine(Attack2AnimationDuration());
+        }
     }
 
     public void Attack2()
@@ -144,22 +153,20 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         animationHandler.AttackAnimation2True();
     }
 
-    public IEnumerator Attack2Duration()
+    public IEnumerator Attack2AnimationDuration() 
     {
         yield return new WaitForSeconds(animationHandler.attack2Duration);
         animationHandler.IdleAnimationTrue();
         canIdle = true;
-        canAttack = false;
+        canAttack = true;
     }
 
 
     public void DashAtack()
     {
-       // playerRb.gravityScale = 0;
         playerTransform.position +=
             new Vector3(playerTransform.localScale.x * melee.DashStrengthX, playerTransform.position.y * melee.DashStrengthY);
 
-        //playerRb.gravityScale = 1;
         canDash = false;
 
         StartCoroutine(DashAttackCD());
@@ -171,7 +178,6 @@ public class MeleeClassVictimInputManagement : MonoBehaviour
         canDash = true;
         animationHandler.IdleAnimationTrue();
         canAttack = true;
-        canAttack = false;
     }
 
 

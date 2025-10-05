@@ -31,8 +31,8 @@ public class Melee_AnimationsHandler : MonoBehaviour
 
     public void AttackAnimation2True()
     {
-        meleeAnimator.SetBool("isIdle", false);
-        meleeAnimator.SetBool("attack1", false);
+      // meleeAnimator.SetBool("isIdle", false);
+       // meleeAnimator.SetBool("attack1", false);
         meleeAnimator.SetBool("attack2", true);
         attack2Duration = meleeAnimator.GetCurrentAnimatorStateInfo(0).length;
     }

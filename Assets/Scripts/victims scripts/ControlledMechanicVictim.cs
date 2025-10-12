@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Sirenix.OdinInspector;
 
-public class ControlledMechanicVictim : MonoBehaviour
+public class ControlledMechanicVictim : SerializedMonoBehaviour
 {
     //using the scriptable object for the victims
     [Header("Scriptable Object class reference here")]
     public ClassManagerConfig victimClassReference;
+    private VictimClassValidator _classValidator;
 
     [Header("Class Inputs")] //this function is meant to be used as a switch between classes based on what it got on the start of the game
     public GameObject meleeClass;
@@ -234,7 +236,7 @@ public class ControlledMechanicVictim : MonoBehaviour
                 Vector2.MoveTowards(ballTransform.position, ballHolderInVictim.transform.position, 0.1f);
 
 
-            //check which class the victim has
+            //check which class the victim has     ----    working on a script that streamlines this part
             if (victimClassReference is MeleeWeaponParameters melee)
             {
                 meleeClass.SetActive(true);

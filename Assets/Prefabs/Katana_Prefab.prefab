@@ -126,5 +126,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4cf072cf0353a47917890eaa569f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Melee_AnimationsHandler
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Animations:
+  - {fileID: 7400000, guid: 56a6fa9c2ff6d9e42b60e42442b40e5e, type: 2}
+  - {fileID: 7400000, guid: 77778c88387c8d34a9cfb29d5b987c56, type: 2}
+  - {fileID: 7400000, guid: f790204ef610c244c98e31195f57a6b3, type: 2}
   meleeAnimator: {fileID: 0}
-  attack1Duration: 0
+  attacksDuration: 0

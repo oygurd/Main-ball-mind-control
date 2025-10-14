@@ -853,6 +853,8 @@ GameObject:
   - component: {fileID: 937530904}
   - component: {fileID: 937530911}
   - component: {fileID: 937530914}
+  - component: {fileID: 937530916}
+  - component: {fileID: 937530915}
   m_Layer: 3
   m_Name: Victim
   m_TagString: Victim
@@ -1121,6 +1123,77 @@ NavMeshAgent:
   m_BaseOffset: 0.71133333
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &937530915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937530903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd668331d6fa1a42a5c7f14432359b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VictimStateController
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  currentState: {fileID: 0}
+  MovemInput:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4fa1a1c5-eeb7-40ce-89f8-2d05ef91f94a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  JumpInput:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 944baa20-cb47-49f5-987e-8630fad4d533
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  airTime: 0
+  airTimeSetter: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 3
+  isGrounded: 0
+  rayDistance: 0
+  jumpCount: 0
+  didJump: 0
+  movementState: 0
+--- !u!114 &937530916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937530903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6780eecc7cdb2445bee308d58a5f7b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VictimMoveStates
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
 --- !u!1 &1128194911
 GameObject:
   m_ObjectHideFlags: 0

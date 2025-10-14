@@ -4,6 +4,7 @@ using UnityEngine;
 public class BallController : SerializedMonoBehaviour
 {
     [SerializeField] private bool isHeld;
+    public Transform victimHoldingBall;
 
     [SerializeField] Transform ballTransform;
     [SerializeField] Rigidbody2D ballRb;
@@ -18,5 +19,11 @@ public class BallController : SerializedMonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    public void AttachToHost()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, victimHoldingBall.position,0.1f);
     }
 }

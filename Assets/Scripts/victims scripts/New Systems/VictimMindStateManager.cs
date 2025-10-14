@@ -1,27 +1,18 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.InputSystem;
 
-public class VictimMoveStates : SerializedMonoBehaviour
+public class VictimMindStateManager : SerializedMonoBehaviour
 {
+    //this script controls which state the victim is at, mind controlled or free willed
+
+    public bool isControlled;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void IdleState()
-    {
-        
-    }
-    
-    public void WalkState()
+    void Start()
     {
         
     }
 
-    public void JumpState()
-    {
-        
-    }
-    
-    
     // Update is called once per frame
     void Update()
     {

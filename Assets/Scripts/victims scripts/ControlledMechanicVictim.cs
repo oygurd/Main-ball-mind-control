@@ -72,7 +72,7 @@ public class ControlledMechanicVictim : SerializedMonoBehaviour
     private void Awake()
     {
         walkSpeed = victimClassReference.movementSpeed;
-        jumpForce = victimClassReference.JumpStrength;
+        jumpForce = victimClassReference.jumpStrength;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -1,18 +1,23 @@
 using UnityEngine;
 using System;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/ClassManagerConfig")]
 public class ClassManagerConfig : ScriptableObject
 {
+    
     public float Health;
     public string weaponName;
     public float movementSpeed;
-    public float JumpStrength;
+    public float jumpStrength;
 }
 
 [Serializable]
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/RangedConfig")]
 public class RangedWeaponParameters : ClassManagerConfig
 {
+    [OdinSerialize]
     [field: SerializeField] public Sprite icon { get; private set; }
     public GameObject weaponPrefab;
     [field: SerializeField] public float damage { get; private set; }
@@ -22,9 +27,11 @@ public class RangedWeaponParameters : ClassManagerConfig
     
 }
 [Serializable]
+[InlineEditor]
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/MeleeConfig")]
 public class MeleeWeaponParameters : ClassManagerConfig
 {
+    [PreviewField(60)]
     [field: SerializeField] public Sprite icon { get; private set; }
     [field: SerializeField] public float extraHP { get; private set; }
     [field: SerializeField] public float DashStrengthX { get; private set; }

@@ -266,8 +266,9 @@ GameObject:
   m_Component:
   - component: {fileID: 397601780}
   - component: {fileID: 397601781}
+  - component: {fileID: 397601782}
   m_Layer: 3
-  m_Name: melee Class Holder
+  m_Name: melee Class Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,6 +311,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &397601782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397601779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef14942c448417341b9aebb1ea202413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VictimClassReferencer
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  meleeVictimClassConfig: {fileID: 11400000, guid: 8907c96fef8481d4b83d1754601aa22f, type: 2}
+  rangedVictimClassConfig: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,11 +874,10 @@ GameObject:
   - component: {fileID: 937530907}
   - component: {fileID: 937530910}
   - component: {fileID: 937530909}
-  - component: {fileID: 937530904}
-  - component: {fileID: 937530911}
-  - component: {fileID: 937530914}
   - component: {fileID: 937530916}
   - component: {fileID: 937530915}
+  - component: {fileID: 937530911}
+  - component: {fileID: 937530914}
   m_Layer: 3
   m_Name: Victim
   m_TagString: Victim
@@ -862,66 +885,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &937530904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937530903}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe925213f541844c94862a317f71d1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControlledMechanicVictim
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  victimClassReference: {fileID: 11400000, guid: 8907c96fef8481d4b83d1754601aa22f, type: 2}
-  meleeClass: {fileID: 397601779}
-  rangedClass: {fileID: 1671439467}
-  walkSpeed: 2
-  jumpForce: 0.5
-  airTime: 0.1
-  airTimeSetter: 0.2
-  movementState: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  isGrounded: 0
-  rayDistance: 0.45
-  jumpCount: 0
-  didJump: 0
-  isHeld: 0
-  ballTransform: {fileID: 0}
-  ballRb: {fileID: 0}
-  ballCollider: {fileID: 0}
-  MoveInputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: cd7490e4-f8ba-4dd4-9051-70ec131dc436
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  InputmoveValue: {x: 0, y: 0}
-  JumpInputAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: af2d80d2-2308-41d4-b986-bdf04aa2f5ba
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  ballHolderInVictim: {fileID: 1860622000}
 --- !u!212 &937530907
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1119,8 +1082,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.4226667
-  m_BaseOffset: 0.71133333
+  m_Height: 1
+  m_BaseOffset: 0.3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &937530915
@@ -1144,16 +1107,18 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  isControlled: 0
   currentState: {fileID: 0}
-  MovemInput:
+  MoveInput:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 4fa1a1c5-eeb7-40ce-89f8-2d05ef91f94a
+    m_Id: f9165043-1e47-4043-9a98-f95cc3a21699
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  moveInputValue: {x: 0, y: 0}
   JumpInput:
     m_Name: 
     m_Type: 0
@@ -1163,13 +1128,14 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  victimRigidbody: {fileID: 0}
   airTime: 0
   airTimeSetter: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 3
   isGrounded: 0
-  rayDistance: 0
+  rayDistance: 0.45
   jumpCount: 0
   didJump: 0
   movementState: 0
@@ -1194,6 +1160,9 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  victimClassValues: {fileID: 11400000, guid: 97d7725c3533e7045b9a330a4d6c2235, type: 2}
+  victimSpeed: 0
+  victimJumpStrength: 0
 --- !u!1 &1128194911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1209,7 @@ GameObject:
   - component: {fileID: 1671439469}
   - component: {fileID: 1671439470}
   m_Layer: 3
-  m_Name: Ranged Class Holder
+  m_Name: Ranged Class Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

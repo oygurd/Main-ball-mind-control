@@ -7,35 +7,39 @@ using UnityEngine.InputSystem;
 public class VictimStateController : SerializedMonoBehaviour
 {
     public bool isControlled;
-    
+
+    //state machine
     public VictimMoveStates currentState;
 
+    //ball holder
+    public Transform BallHolderObject;
+
+    //input system
     [HideInInspector] public InputAction MoveInput;
     [HideInInspector] public Vector2 moveInputValue;
     [HideInInspector] public InputAction JumpInput;
 
+    //rigidbody
     public Rigidbody2D victimRigidbody;
-
-    [SerializeField] float airTime;
-    [SerializeField] float airTimeSetter;
-
-//ground detection
+    
+    //ground detection
     [SerializeField] LayerMask groundLayer = 3;
-
     [SerializeField] bool isGrounded;
     [SerializeField] float rayDistance;
     [SerializeField] int jumpCount;
     [SerializeField] private bool didJump;
+    [SerializeField] float airTime;
+    [SerializeField] float airTimeSetter;
 
-    public enum State
+    public enum MovementStates
     {
         Idle,
         Walking,
         Jumping
     }
 
-    public State movementState;
-
+    public MovementStates movementStates;
+    
     private void Awake()
     {
         currentState = GetComponent<VictimMoveStates>();
@@ -53,41 +57,46 @@ public class VictimStateController : SerializedMonoBehaviour
 
     private void Update()
     {
+        //movement
         moveInputValue = MoveInput.ReadValue<Vector2>();
-        switch (movementState)
+        switch (movementStates)
         {
-            case State.Idle:
+            case MovementStates.Idle:
                 currentState.IdleState();
                 break;
-            case State.Walking:
+            case MovementStates.Walking:
                 currentState.WalkState();
                 break;
-            case State.Jumping:
+            case MovementStates.Jumping:
                 jumpCount -= 1;
                 currentState.JumpState();
                 break;
         }
 
         RaycastGroundCheck();
-        ChangeState();
+        ChangeMovementState();
+        
+        //actions
+        
+        
     }
 
 
-    public void ChangeState()
+    public void ChangeMovementState()
     {
         if (!MoveInput.IsPressed())
         {
-            movementState = State.Idle;
+            movementStates = MovementStates.Idle;
         }
 
         if (MoveInput.IsPressed())
         {
-            movementState = State.Walking;
+            movementStates = MovementStates.Walking;
         }
 
         if (JumpInput.IsPressed() && RaycastGroundCheck())
         {
-            movementState = State.Jumping;
+            movementStates = MovementStates.Jumping;
         }
     }
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Victim
   - Ball
+  - ballHolder
   layers:
   - Default
   - TransparentFX

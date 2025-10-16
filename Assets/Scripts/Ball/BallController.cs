@@ -14,6 +14,7 @@ public class BallController : SerializedMonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
     }
 
     // Update is called once per frame
@@ -26,4 +27,12 @@ public class BallController : SerializedMonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, victimHoldingBall.position,0.1f);
     }
+
+    public void DetachFromHost()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, ballTransform.position,0.1f); //for now
+    }
+    
+    
+    
 }

@@ -203,12 +203,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49406917}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.27293, y: -6.84455, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.64, y: -6.632, z: 0}
   m_LocalScale: {x: 103.48569, y: 5.2125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1128194912}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &49406920
 BoxCollider2D:
@@ -881,7 +881,7 @@ GameObject:
   m_Layer: 3
   m_Name: Victim
   m_TagString: Victim
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1109,7 +1109,6 @@ MonoBehaviour:
     SerializationNodes: []
   isControlled: 0
   currentState: {fileID: 0}
-  BallHolderObject: {fileID: 1860622000}
   MoveInput:
     m_Name: 
     m_Type: 0
@@ -1130,6 +1129,8 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   victimRigidbody: {fileID: 0}
+  airTime: 0
+  airTimeSetter: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 3
@@ -1137,9 +1138,7 @@ MonoBehaviour:
   rayDistance: 0.45
   jumpCount: 0
   didJump: 0
-  airTime: 0
-  airTimeSetter: 0
-  movementStates: 0
+  movementState: 0
 --- !u!114 &937530916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,37 +1163,6 @@ MonoBehaviour:
   victimClassValues: {fileID: 11400000, guid: 97d7725c3533e7045b9a330a4d6c2235, type: 2}
   victimSpeed: 0
   victimJumpStrength: 0
---- !u!1 &1002583638
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1002583639}
-  m_Layer: 0
-  m_Name: ------------------------------------------------- (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1002583639
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002583638}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7442, y: -2.61274, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1128194911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1195,6 @@ Transform:
   - {fileID: 2104497729}
   - {fileID: 574740598}
   - {fileID: 892052672}
-  - {fileID: 49406919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1671439467
@@ -1297,37 +1264,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &1778327327
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1778327328}
-  m_Layer: 0
-  m_Name: -------------------------------------------------
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1778327328
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778327327}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7442, y: -2.61274, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1806201224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,7 +1632,7 @@ GameObject:
   m_Layer: 0
   m_Name: ball (player)
   m_TagString: Ball
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1841,11 +1777,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1806201228}
   - {fileID: 619394802}
-  - {fileID: 1778327328}
+  - {fileID: 49406919}
   - {fileID: 2146074926}
+  - {fileID: 1806201228}
   - {fileID: 937530908}
   - {fileID: 1983836820}
-  - {fileID: 1002583639}
   - {fileID: 1128194912}

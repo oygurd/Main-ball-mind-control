@@ -23,7 +23,7 @@ public class VictimStateController : SerializedMonoBehaviour
     public Rigidbody2D victimRigidbody;
     
     //ground detection
-    [SerializeField] LayerMask groundLayer = 3;
+    [SerializeField] LayerMask groundLayer = 0;
     [SerializeField] bool isGrounded;
     [SerializeField] float rayDistance;
     [SerializeField] int jumpCount;
@@ -94,14 +94,14 @@ public class VictimStateController : SerializedMonoBehaviour
             movementStates = MovementStates.Walking;
         }
 
-        if (JumpInput.IsPressed() && RaycastGroundCheck())
+        if (JumpInput.IsPressed() && isGrounded )
         {
             movementStates = MovementStates.Jumping;
         }
     }
 
 
-    public bool RaycastGroundCheck()
+    public void RaycastGroundCheck()
     {
         //managing the ground detection -----------------
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, ~groundLayer);
@@ -118,7 +118,7 @@ public class VictimStateController : SerializedMonoBehaviour
             victimRigidbody.linearDamping = 5;
 
             Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.green);
-            return true;
+            
         }
 
         else if (hit.collider == null)
@@ -140,6 +140,5 @@ public class VictimStateController : SerializedMonoBehaviour
             Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.red);
         }
 
-        return false;
     }
 }

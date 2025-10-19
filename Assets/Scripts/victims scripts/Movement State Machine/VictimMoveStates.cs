@@ -8,6 +8,7 @@ public class VictimMoveStates : SerializedMonoBehaviour
     private MeleeWeaponParameters meleeClass;
     private RangedWeaponParameters RangedClass;
     
+    [Required]
     private VictimStateController victimStateController;
 
     [SerializeField] float victimSpeed;

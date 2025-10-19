@@ -1,15 +1,20 @@
 using UnityEngine;
 using System;
+using System.ComponentModel;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
+// This code is for the stats of the victims and their classes, do not delete this!
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/ClassManagerConfig")]
 public class ClassManagerConfig : ScriptableObject
 {
-    
+    [BoxGroup("Basic Stats")] 
     public float Health;
+    [BoxGroup("Basic Stats")] 
     public string weaponName;
+    [BoxGroup("Basic Stats")] 
     public float movementSpeed;
+    [BoxGroup("Basic Stats")]
     public float jumpStrength;
 }
 
@@ -18,21 +23,25 @@ public class ClassManagerConfig : ScriptableObject
 public class RangedWeaponParameters : ClassManagerConfig
 {
     [OdinSerialize]
-    [field: SerializeField] public Sprite icon { get; private set; }
+    [field: SerializeField]
+    public Sprite icon { get; private set; }
+
     public GameObject weaponPrefab;
     [field: SerializeField] public float damage { get; private set; }
     [field: SerializeField] public int Ammo { get; private set; }
     [field: SerializeField] public int MaxAmmo { get; private set; }
     [field: SerializeField] public float weaponRange { get; private set; }
-    
 }
+
 [Serializable]
 [InlineEditor]
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/MeleeConfig")]
 public class MeleeWeaponParameters : ClassManagerConfig
 {
     [PreviewField(60)]
-    [field: SerializeField] public Sprite icon { get; private set; }
+    [field: SerializeField]
+    public Sprite icon { get; private set; }
+
     [field: SerializeField] public float extraHP { get; private set; }
     [field: SerializeField] public float DashStrengthX { get; private set; }
     [field: SerializeField] public float DashStrengthY { get; private set; }
@@ -46,8 +55,4 @@ public class MeleeWeaponParameters : ClassManagerConfig
 
 
     [field: SerializeField] public GameObject prefab { get; private set; }
-    
-    
-
-
 }

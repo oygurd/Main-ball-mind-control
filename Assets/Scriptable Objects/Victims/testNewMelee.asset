@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: testNewMelee
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponParameters
   Health: 100
-  weaponName: 
-  movementSpeed: 2
+  weaponName: katana
+  movementSpeed: 3
   jumpStrength: 0.3
   <icon>k__BackingField: {fileID: 0}
   <extraHP>k__BackingField: 0

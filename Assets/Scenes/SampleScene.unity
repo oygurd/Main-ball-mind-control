@@ -323,17 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef14942c448417341b9aebb1ea202413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VictimClassReferencer
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  meleeVictimClassConfig: {fileID: 11400000, guid: 8907c96fef8481d4b83d1754601aa22f, type: 2}
-  rangedVictimClassConfig: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +865,7 @@ GameObject:
   - component: {fileID: 937530909}
   - component: {fileID: 937530916}
   - component: {fileID: 937530915}
+  - component: {fileID: 937530917}
   - component: {fileID: 937530911}
   - component: {fileID: 937530914}
   m_Layer: 3
@@ -1138,7 +1128,7 @@ MonoBehaviour:
   jumpCount: 0
   didJump: 0
   airTime: 0
-  airTimeSetter: 0
+  airTimeSetter: 0.4
   movementStates: 0
 --- !u!114 &937530916
 MonoBehaviour:
@@ -1164,6 +1154,27 @@ MonoBehaviour:
   victimClassValues: {fileID: 11400000, guid: 97d7725c3533e7045b9a330a4d6c2235, type: 2}
   victimSpeed: 0
   victimJumpStrength: 0
+--- !u!114 &937530917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937530903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7accdd4900449241998b3c6c9f50224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VictimClass
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
 --- !u!1 &1002583638
 GameObject:
   m_ObjectHideFlags: 0

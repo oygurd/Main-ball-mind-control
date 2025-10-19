@@ -29,7 +29,9 @@ public class VictimStateController : SerializedMonoBehaviour
     [SerializeField] int jumpCount;
     [SerializeField] private bool didJump;
     [SerializeField] float airTime;
-    [SerializeField] float airTimeSetter;
+    
+    [Required("Cannot be 0!")]
+    public float airTimeSetter;
 
     public enum MovementStates
     {
@@ -44,6 +46,7 @@ public class VictimStateController : SerializedMonoBehaviour
     {
         currentState = GetComponent<VictimMoveStates>();
         currentState.enabled = true;
+        
         //inputsystem
         MoveInput = InputSystem.actions.FindAction("Move");
         JumpInput = InputSystem.actions.FindAction("Jump");
@@ -104,7 +107,7 @@ public class VictimStateController : SerializedMonoBehaviour
     public void RaycastGroundCheck()
     {
         //managing the ground detection -----------------
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, ~groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
 
         if (hit.collider != null)
         {
@@ -112,7 +115,7 @@ public class VictimStateController : SerializedMonoBehaviour
 
             jumpCount = 1;
             didJump = false;
-            airTime = airTimeSetter;
+            airTime = airTimeSetter; // need to adjust it to any victim based on wepaon
 
             victimRigidbody.gravityScale = 1f;
             victimRigidbody.linearDamping = 5;
@@ -126,7 +129,7 @@ public class VictimStateController : SerializedMonoBehaviour
             isGrounded = false;
             jumpCount = 0;
             didJump = true;
-
+            
             if (airTime != 0)
             {
                 airTime -= 1 * Time.deltaTime;

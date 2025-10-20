@@ -16,13 +16,14 @@ MonoBehaviour:
   weaponName: katana
   movementSpeed: 3
   jumpStrength: 0.3
-  <icon>k__BackingField: {fileID: 0}
+  icon: {fileID: -6906966498496854335, guid: ea514fdda58c8a54cad8fdabee612ae3, type: 3}
+  <baseDamage>k__BackingField: 0
   <extraHP>k__BackingField: 0
-  <DashStrengthX>k__BackingField: 0
-  <DashStrengthY>k__BackingField: 0
-  <range>k__BackingField: 0
+  <attackRange>k__BackingField: 0
   <attackSpeed>k__BackingField: 0
   <attackCD>k__BackingField: 0
-  <dashAttackCD>k__BackingField: 0
   <parryWindup>k__BackingField: 0
+  <DashStrengthX>k__BackingField: 0
+  <DashStrengthY>k__BackingField: 0
+  <dashAttackCD>k__BackingField: 0
   <prefab>k__BackingField: {fileID: 0}

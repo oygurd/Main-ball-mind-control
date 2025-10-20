@@ -8,26 +8,21 @@ using Sirenix.Serialization;
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/ClassManagerConfig")]
 public class ClassManagerConfig : ScriptableObject
 {
-    [BoxGroup("Basic Stats")] 
-    public float Health;
-    [BoxGroup("Basic Stats")] 
-    public string weaponName;
-    [BoxGroup("Basic Stats")] 
-    public float movementSpeed;
-    [BoxGroup("Basic Stats")]
-    public float jumpStrength;
+    [BoxGroup("Basic Stats")] public float Health;
+    [BoxGroup("Basic Stats")] public string weaponName;
+    [BoxGroup("Basic Stats")] public float movementSpeed;
+    [BoxGroup("Basic Stats")] public float jumpStrength;
+    [BoxGroup("Basic Stats")] [PreviewField(60)]
+    [OnInspectorGUI]
+    public Sprite icon;
 }
 
 [Serializable]
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/RangedConfig")]
 public class RangedWeaponParameters : ClassManagerConfig
 {
-    [OdinSerialize]
-    [field: SerializeField]
-    public Sprite icon { get; private set; }
-
     public GameObject weaponPrefab;
-    [field: SerializeField] public float damage { get; private set; }
+    [field: SerializeField] public float baseDamage { get; private set; }
     [field: SerializeField] public int Ammo { get; private set; }
     [field: SerializeField] public int MaxAmmo { get; private set; }
     [field: SerializeField] public float weaponRange { get; private set; }
@@ -38,21 +33,15 @@ public class RangedWeaponParameters : ClassManagerConfig
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/MeleeConfig")]
 public class MeleeWeaponParameters : ClassManagerConfig
 {
-    [PreviewField(60)]
-    [field: SerializeField]
-    public Sprite icon { get; private set; }
-
+    [field: SerializeField] public float baseDamage { get; private set; }
     [field: SerializeField] public float extraHP { get; private set; }
-    [field: SerializeField] public float DashStrengthX { get; private set; }
-    [field: SerializeField] public float DashStrengthY { get; private set; }
-
-
-    [field: SerializeField] public float range { get; private set; }
+    [field: SerializeField] public float attackRange { get; private set; }
     [field: SerializeField] public float attackSpeed { get; private set; }
     [field: SerializeField] public float attackCD { get; private set; }
-    [field: SerializeField] public float dashAttackCD { get; private set; }
     [field: SerializeField] public float parryWindup { get; private set; }
-
+    [field: SerializeField] public float DashStrengthX { get; private set; }
+    [field: SerializeField] public float DashStrengthY { get; private set; }
+    [field: SerializeField] public float dashAttackCD { get; private set; }
 
     [field: SerializeField] public GameObject prefab { get; private set; }
 }

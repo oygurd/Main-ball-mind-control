@@ -18,7 +18,7 @@ public class VictimMoveStates : SerializedMonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-       // victimClassValues = GetComponent<ClassManagerConfig>();
+       //victimClassValues = GetComponent<ClassManagerConfig>();
         victimSpeed = victimClassValues.movementSpeed;
         victimJumpStrength = victimClassValues.jumpStrength;
 

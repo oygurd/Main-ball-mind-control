@@ -7,7 +7,6 @@ public class ControlledMechanicVictim : SerializedMonoBehaviour
     //using the scriptable object for the victims
     [Header("Scriptable Object class reference here")]
     public ClassManagerConfig victimClassReference;
-    private VictimClassValidator _classValidator;
 
     [Header("Class Inputs")] //this function is meant to be used as a switch between classes based on what it got on the start of the game
     public GameObject meleeClass;

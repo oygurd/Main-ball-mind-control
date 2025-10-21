@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: testNewMelee
+  m_Name: dsaaccvdcd
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponParameters
-  Health: 100
-  weaponName: katana
-  movementSpeed: 3
-  jumpStrength: 0.3
-  icon: {fileID: -6906966498496854335, guid: ea514fdda58c8a54cad8fdabee612ae3, type: 3}
+  Health: 0
+  movementSpeed: 0
+  jumpStrength: 0
+  icon: {fileID: 0}
   <baseDamage>k__BackingField: 0
   <extraHP>k__BackingField: 0
   <attackRange>k__BackingField: 0

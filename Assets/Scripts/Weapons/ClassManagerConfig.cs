@@ -18,11 +18,9 @@ public class ClassManagerConfig : ScriptableObject
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/RangedConfig")]
 public class RangedWeaponParameters : ClassManagerConfig
 {
-    public GameObject weaponPrefab;
-    [field: SerializeField] public float baseDamage { get; private set; }
-    [field: SerializeField] public int Ammo { get; private set; }
-    [field: SerializeField] public int MaxAmmo { get; private set; }
-    [field: SerializeField] public float weaponRange { get; private set; }
+    [TabGroup("Class", "Ranged class stats", SdfIconType.Heart)]
+    public float baseDamage, weaponRange;
+    public int Ammo, MaxAmmo;
 }
 
 [Serializable]
@@ -31,11 +29,10 @@ public class RangedWeaponParameters : ClassManagerConfig
 public class MeleeWeaponParameters : ClassManagerConfig
 {
     [TabGroup("Class", "Melee class stats", SdfIconType.Magic, TextColor = "red")]
-    public float baseDamage, extraHP, attackRange, attackSpeed, parryWindup;
+    public float baseDamage, extraHP, attackRange, attackSpeed;
 
-    public float DashStrengthX { get; private set; }
-    public float DashStrengthY { get; private set; }
-    public float dashAttackCD { get; private set; }
+    [TabGroup("Class", "Melee Class Ability stats", SdfIconType.Activity, TextColor = "Green")]
+    public float dashAttackCD, DashStrengthX, DashStrengthY, parrySpeed, ParryCd;
 
     [field: SerializeField] public GameObject prefab { get; private set; }
 }

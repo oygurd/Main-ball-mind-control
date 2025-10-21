@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: dsaaccvdcd
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponParameters
+  m_Name: rangedTest
+  m_EditorClassIdentifier: Assembly-CSharp::RangedWeaponParameters
   Health: 0
   movementSpeed: 0
   jumpStrength: 0
   icon: {fileID: 0}
   <baseDamage>k__BackingField: 0
-  <extraHP>k__BackingField: 0
-  <attackRange>k__BackingField: 0
-  <attackSpeed>k__BackingField: 0
-  <attackCD>k__BackingField: 0
-  <parryWindup>k__BackingField: 0
-  <DashStrengthX>k__BackingField: 0
-  <DashStrengthY>k__BackingField: 0
-  <dashAttackCD>k__BackingField: 0
-  <prefab>k__BackingField: {fileID: 0}
+  <Ammo>k__BackingField: 0
+  <MaxAmmo>k__BackingField: 0
+  <weaponRange>k__BackingField: 0

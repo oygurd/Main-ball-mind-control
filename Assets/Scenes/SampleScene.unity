@@ -1136,7 +1136,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  victimClassValues: {fileID: 11400000, guid: d844612dff536014c879974123ce3d6c, type: 2}
+  victimClassValues: {fileID: 11400000, guid: ae9719849cbd2484995e418098f0687e, type: 2}
   victimSpeed: 0
   victimJumpStrength: 0
 --- !u!1 &1002583638

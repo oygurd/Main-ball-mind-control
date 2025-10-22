@@ -10,6 +10,9 @@ public class ClassManagerConfig : ScriptableObject
 {
     [TabGroup("Class", "Base Stats", SdfIconType.Heart)]
     public float Health, movementSpeed, jumpStrength;
+    
+    [TabGroup("Class", "Base Stats", SdfIconType.Heart)]
+    public GameObject WeaponPrefab;
 
     [PreviewField(60)] [OnInspectorGUI] public Sprite icon;
 }
@@ -18,8 +21,9 @@ public class ClassManagerConfig : ScriptableObject
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/RangedConfig")]
 public class RangedWeaponParameters : ClassManagerConfig
 {
-    [TabGroup("Class", "Ranged class stats", SdfIconType.Heart)]
+    [TabGroup("Class", "Ranged class stats", SdfIconType.ArrowUp, TextColor = "red")]
     public float baseDamage, weaponRange;
+    [TabGroup("Class", "Ranged class stats", SdfIconType.ArrowUp, TextColor = "red")]
     public int Ammo, MaxAmmo;
 }
 
@@ -33,6 +37,4 @@ public class MeleeWeaponParameters : ClassManagerConfig
 
     [TabGroup("Class", "Melee Class Ability stats", SdfIconType.Activity, TextColor = "Green")]
     public float dashAttackCD, DashStrengthX, DashStrengthY, parrySpeed, ParryCd;
-
-    [field: SerializeField] public GameObject prefab { get; private set; }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -7,23 +8,44 @@ using UnityEngine.Analytics;
 
 public class Melee_AnimationsHandler : SerializedMonoBehaviour
 {
-    public List<AnimationClip> Animations = new List<AnimationClip>();
+    [HideLabel] [ProgressBar(0, "barSetter", r: 0, g: 1, b: 0, Height = 30)]
+    public float AnimationTime;
+    float barSetter;
+
+    [Button("Play Attack 1")]
+    public void PlayAttack1()
+    {
+        meleeAnimator.Play(currentAnimationIndex);
+    }
+
+    public AnimationClip[] Animations;
     public AnimationClip CurrentPlayingAnimation;
-    [SerializeField] Animator meleeAnimator;
+    public Animator meleeAnimator;
     public float attacksDuration;
 
     [SerializeField] int currentAnimationIndex;
-    private int animationsCount;
+    public int animationsCount;
+
+
+    private void Awake()
+    {
+        barSetter = Animations.Length;
+        currentAnimationIndex = 0;
+        CurrentPlayingAnimation = Animations[currentAnimationIndex];
+        meleeAnimator = GetComponent<Animator>();
+        
+
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        meleeAnimator = gameObject.GetComponent<Animator>();
-        animationsCount = Animations.Count;
-        CurrentPlayingAnimation = Animations[0];
+        //meleeAnimator = GetComponent<Animator>();
+        //animationsCount = Animations.Count;
+      //  CurrentPlayingAnimation = Animations[1];
     }
 
-    public void PlayAnimationSequence()
+    /*public void PlayAnimationSequence()
     {
         meleeAnimator.Play(CurrentPlayingAnimation.name + 1);
         if (currentAnimationIndex >= animationsCount)
@@ -31,7 +53,7 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
             currentAnimationIndex = 0;
             meleeAnimator.Play(currentAnimationIndex);
         }
-    }
+    }*/
     /*public void IdleAnimation()
     {
         meleeAnimator.SetBool("isIdle", true);

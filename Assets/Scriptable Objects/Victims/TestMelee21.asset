@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: TestMelee21
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponParameters
-  Health: 0
-  movementSpeed: 0
-  jumpStrength: 0
+  Health: 100
+  movementSpeed: 3
+  jumpStrength: 0.1
+  WeaponPrefab: {fileID: 0}
   icon: {fileID: 0}
   baseDamage: 0
   extraHP: 0
   attackRange: 0
   attackSpeed: 0
-  parryWindup: 0
-  <prefab>k__BackingField: {fileID: 0}
+  dashAttackCD: 0
+  DashStrengthX: 0
+  DashStrengthY: 0
+  parrySpeed: 0
+  ParryCd: 0

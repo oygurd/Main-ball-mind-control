@@ -5,7 +5,7 @@ public class AnimationCaller : ICommand
 Melee_AnimationsHandler melee_animationsHandler;
     public void execute()
     {
-        melee_animationsHandler.PlayAnimationSequence();
+        //melee_animationsHandler.PlayAnimationSequence();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

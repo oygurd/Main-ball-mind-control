@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.Analytics;
@@ -30,57 +31,23 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         barSetter = MeleeAttack1Animation.length;
         AnimationTime = barSetter;
     }
-
-    // public Animator meleeAnimator;
-    public float attacksDuration;
+    
+    [Button("Play Attack 2")]
+    public void PlayAttack2()
+    {
+        MeleeAnimator.Play("Melee_Attack2");
+        barSetter = MeleeAttack1Animation.length;
+        AnimationTime = barSetter;
+    }
 
     private void Awake()
     {
         MeleeAnimator = GetComponent<Animator>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public IEnumerator AttacksSequencer()
     {
-        //meleeAnimator = GetComponent<Animator>();
-        //animationsCount = Animations.Count;
-        //  CurrentPlayingAnimation = Animations[1];
+        return null;
     }
-
-    /*public void PlayAnimationSequence()
-    {
-        meleeAnimator.Play(CurrentPlayingAnimation.name + 1);
-        if (currentAnimationIndex >= animationsCount)
-        {
-            currentAnimationIndex = 0;
-            meleeAnimator.Play(currentAnimationIndex);
-        }
-    }*/
-    /*public void IdleAnimation()
-    {
-        meleeAnimator.SetBool("isIdle", true);
-        meleeAnimator.SetBool("attack1", false);
-        meleeAnimator.SetBool("attack2", false);
-    }
-//--------------------------------------------------------------------------------------------//
-
-    public void AttackAnimation1()
-    {
-        meleeAnimator.SetBool("isIdle", false);
-        meleeAnimator.SetBool("attack1", true);
-        meleeAnimator.SetBool("attack2", false);
-    }
-//--------------------------------------------------------------------------------------------//
-
-    public void AttackAnimation2()
-    {
-      // meleeAnimator.SetBool("isIdle", false);
-       // meleeAnimator.SetBool("attack1", false);
-        meleeAnimator.SetBool("attack2", true);
-    }
-
-    public void DashAnimation()
-    {
-        meleeAnimator.SetFloat("State", 1);
-    }*/
+    
 }

@@ -1,8 +1,11 @@
 using UnityEngine;
-
-public class MeleeClassVictim : MonoBehaviour
+using Sirenix.OdinInspector;
+public class MeleeClassVictim : SerializedMonoBehaviour
 {
     public MeleeWeaponParameters MeleeWeaponParameters;
+    
+    public Melee_AnimationsHandler melee_animationsHandler;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

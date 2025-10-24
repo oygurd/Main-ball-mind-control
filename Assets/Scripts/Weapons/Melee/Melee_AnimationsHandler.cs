@@ -31,8 +31,12 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         AnimationTime = barSetter;
     }
 
-    // public Animator meleeAnimator;
-    public float attacksDuration;
+    public void PlayAttack2()
+    {
+        MeleeAnimator.Play("Melee_Attack2");
+        barSetter = MeleeAttack1Animation.length;
+        AnimationTime = barSetter;
+    }
 
     private void Awake()
     {

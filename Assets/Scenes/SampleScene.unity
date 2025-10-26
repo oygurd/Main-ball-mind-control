@@ -256,6 +256,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &330268334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4932919213771005843, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+  m_PrefabInstance: {fileID: 1805143564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &397601779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1215,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2125606026151638190, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
   m_PrefabInstance: {fileID: 1805143564}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1631216421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330268334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eff91c76f64c3c409a606a2655d39d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeClassVictim
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  MeleeWeaponParameters: {fileID: 0}
+  melee_animationsHandler: {fileID: 0}
+  time: 0
+  secondStrike: 0
+  BasicAttackInput:
+    m_Name: Basic Attack Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 295021d4-cfa7-4b52-b8b3-603d6ca5fe64
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ParryOrGrenadeInput:
+    m_Name: Parry Or Grenade Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1ed46e93-6150-400c-bbb4-8fa53b612d23
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &1778327327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,7 +1320,7 @@ PrefabInstance:
     - target: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
     - target: {fileID: 2125606026151638190, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.56314015
@@ -1324,7 +1372,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4932919213771005843, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1631216421}
   m_SourcePrefab: {fileID: 100100000, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
 --- !u!1 &1806201224
 GameObject:
@@ -1533,7 +1584,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eff91c76f64c3c409a606a2655d39d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeClassVictim
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   MeleeWeaponParameters: {fileID: 0}
+  melee_animationsHandler: {fileID: 0}
+  time: 0
+  secondStrike: 0
+  BasicAttackInput:
+    m_Name: Basic Attack Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ec71c72e-d5c3-4c1d-8a89-f70429b2e821
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ParryOrGrenadeInput:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9fa0311d-928f-413c-b645-71ce2c03fd8a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &1983836818
 GameObject:
   m_ObjectHideFlags: 0

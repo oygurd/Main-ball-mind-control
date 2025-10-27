@@ -12,6 +12,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     [SerializeField] float time;
 
+    public bool firstStrike;
     public bool secondStrike;
     public InputAction BasicAttackInput;
     public InputAction ParryOrGrenadeInput;
@@ -28,6 +29,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     {
         Idle();
         Attack();
+        
     }
 
     public void Idle()
@@ -55,10 +57,11 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     public void Attack()
     {
-        if (BasicAttackInput.IsPressed())
+        BasicAttackInput.started += ctx => AttackTime();
+        /*if (BasicAttackInput.IsPressed())
         {
             StartCoroutine(AttackTime());
-        }
+        }*/
     }
     
     

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6076796585560701650}
   - component: {fileID: 4495197838423712312}
   - component: {fileID: 575054682780356309}
+  - component: {fileID: 6113061229234950028}
   m_Layer: 0
   m_Name: Katana_Prefab
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4932919213771005843}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.9850485, w: 0.17227757}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9850478, w: 0.17228162}
   m_LocalPosition: {x: 1.55, y: -3.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -127,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Melee_AnimationsHandler
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -136,11 +137,51 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   AnimationTime: 0
-  Animations:
-  - {fileID: 7400000, guid: 56a6fa9c2ff6d9e42b60e42442b40e5e, type: 2}
-  - {fileID: 7400000, guid: 77778c88387c8d34a9cfb29d5b987c56, type: 2}
-  - {fileID: 7400000, guid: f790204ef610c244c98e31195f57a6b3, type: 2}
-  CurrentPlayingAnimation: {fileID: 0}
-  meleeAnimator: {fileID: 0}
-  attacksDuration: 0
-  currentAnimationIndex: 0
+  MeleeAnimator: {fileID: 0}
+  MeleeIdleAnimation: {fileID: 7400000, guid: 56a6fa9c2ff6d9e42b60e42442b40e5e, type: 2}
+  MeleeAttack1Animation: {fileID: 7400000, guid: 77778c88387c8d34a9cfb29d5b987c56, type: 2}
+  MeleeAttack2Animation: {fileID: 7400000, guid: f790204ef610c244c98e31195f57a6b3, type: 2}
+--- !u!114 &6113061229234950028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932919213771005843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eff91c76f64c3c409a606a2655d39d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeClassVictim
+  serializationData:
+    SerializedFormat: 0
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  MeleeWeaponParameters: {fileID: 0}
+  melee_animationsHandler: {fileID: 0}
+  time: 0
+  firstStrike: 0
+  secondStrike: 0
+  BasicAttackInput:
+    m_Name: Basic Attack Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 295021d4-cfa7-4b52-b8b3-603d6ca5fe64
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ParryOrGrenadeInput:
+    m_Name: Parry Or Grenade Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1ed46e93-6150-400c-bbb4-8fa53b612d23
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0

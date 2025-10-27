@@ -4,6 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Melee_AnimationsHandler))]
 public class MeleeClassVictim : SerializedMonoBehaviour
 {
     public MeleeWeaponParameters MeleeWeaponParameters;
@@ -14,12 +15,15 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     public bool firstStrike;
     public bool secondStrike;
+    public PlayerInput _inputSystem;
     public InputAction BasicAttackInput;
     public InputAction ParryOrGrenadeInput;
     //public InputAction ThrowableInput;
 
     private void Awake()
     {
+        _inputSystem = GetComponentInParent<PlayerInput>();
+        firstStrike = true;
         melee_animationsHandler = GetComponent<Melee_AnimationsHandler>();
         BasicAttackInput = InputSystem.actions.FindAction("Attack");
         ParryOrGrenadeInput = InputSystem.actions.FindAction("Parry/Grenade");
@@ -28,7 +32,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     private void Update()
     {
         Idle();
-        Attack();
+       // Attack();
         
     }
 
@@ -44,26 +48,36 @@ public class MeleeClassVictim : SerializedMonoBehaviour
    public IEnumerator AttackTime()
     {
         secondStrike = false;
-        time = melee_animationsHandler.AnimationTime;
         melee_animationsHandler.PlayAttack1();
-        yield return new WaitForSeconds(0.5f);
+        time = melee_animationsHandler.barSetter;
+        yield return new WaitForSeconds(time);
         secondStrike = true;
         if (BasicAttackInput.IsInProgress() && secondStrike)
         {
             melee_animationsHandler.PlayAttack2();
+            time = melee_animationsHandler.barSetter;
         }
+        yield return new WaitForSeconds(time);
         secondStrike = false;
+        firstStrike = true;
     }
 
     public void Attack()
     {
-        BasicAttackInput.started += ctx => AttackTime();
-        /*if (BasicAttackInput.IsPressed())
+        if (BasicAttackInput.IsPressed() && firstStrike)
         {
             StartCoroutine(AttackTime());
-        }*/
+            firstStrike = false;
+        }
     }
-    
+
+    public void OnAttack(InputValue attackVal)
+    {
+        
+            StartCoroutine(AttackTime());
+            firstStrike = false;
+        
+    }
     
     
 }

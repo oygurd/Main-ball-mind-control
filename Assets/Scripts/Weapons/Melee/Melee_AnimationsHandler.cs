@@ -14,7 +14,7 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
     public AnimationClip MeleeAttack1Animation;
     public AnimationClip MeleeAttack2Animation;
 
-    float barSetter;
+    [HideInInspector] public float barSetter;
 
     [Button("Play Idle")]
     public void PlayIdle()

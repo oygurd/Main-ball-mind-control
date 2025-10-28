@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -32,8 +31,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     private void Update()
     {
         Idle();
-       // Attack();
-        
+        // Attack();
     }
 
     public void Idle()
@@ -43,9 +41,9 @@ public class MeleeClassVictim : SerializedMonoBehaviour
             melee_animationsHandler.PlayIdle();
         }
     }
-    
-    
-   public IEnumerator AttackTime()
+
+
+    public IEnumerator AttackTime()
     {
         secondStrike = false;
         melee_animationsHandler.PlayAttack1();
@@ -57,9 +55,11 @@ public class MeleeClassVictim : SerializedMonoBehaviour
             melee_animationsHandler.PlayAttack2();
             time = melee_animationsHandler.barSetter;
         }
+
         yield return new WaitForSeconds(time);
         secondStrike = false;
         firstStrike = true;
+        //StartCoroutine(AttackTime());
     }
 
     public void Attack()
@@ -71,13 +71,19 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         }
     }
 
-    public void OnAttack(InputValue attackVal)
+    public void OnAttack(InputAction.CallbackContext context)
     {
-        
+        if (context.phase == InputActionPhase.Performed)
+        {
             StartCoroutine(AttackTime());
             firstStrike = false;
-        
+            secondStrike = false;
+        }
+        else 
+        {
+            StopCoroutine(AttackTime());
+            firstStrike = true;
+            secondStrike = false;
+        }
     }
-    
-    
 }

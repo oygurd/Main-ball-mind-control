@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Melee_AnimationsHandler
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -141,6 +141,7 @@ MonoBehaviour:
   MeleeIdleAnimation: {fileID: 7400000, guid: 56a6fa9c2ff6d9e42b60e42442b40e5e, type: 2}
   MeleeAttack1Animation: {fileID: 7400000, guid: 77778c88387c8d34a9cfb29d5b987c56, type: 2}
   MeleeAttack2Animation: {fileID: 7400000, guid: f790204ef610c244c98e31195f57a6b3, type: 2}
+  barSetter: 0
 --- !u!114 &6113061229234950028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeClassVictim
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -167,6 +168,7 @@ MonoBehaviour:
   time: 0
   firstStrike: 0
   secondStrike: 0
+  _inputSystem: {fileID: 0}
   BasicAttackInput:
     m_Name: Basic Attack Input
     m_Type: 0

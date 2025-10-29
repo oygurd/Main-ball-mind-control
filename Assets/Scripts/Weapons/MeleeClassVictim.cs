@@ -30,7 +30,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     private void Update()
     {
-        Idle();
+        //Idle();
         // Attack();
     }
 
@@ -59,17 +59,10 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         yield return new WaitForSeconds(time);
         secondStrike = false;
         firstStrike = true;
-        //StartCoroutine(AttackTime());
+        StartCoroutine(AttackTime());
     }
 
-    public void Attack()
-    {
-        if (BasicAttackInput.IsPressed() && firstStrike)
-        {
-            StartCoroutine(AttackTime());
-            firstStrike = false;
-        }
-    }
+   
 
     public void OnAttack(InputAction.CallbackContext context)
     {
@@ -81,9 +74,11 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         }
         else 
         {
-            StopCoroutine(AttackTime());
+            //StopCoroutine(AttackTime());
+            StopAllCoroutines();
             firstStrike = true;
             secondStrike = false;
+            Idle();
         }
     }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   baseDamage: 0
   extraHP: 0
-  attackRange: 0
+  attackRange: 2.11
   attackSpeed: 0
   dashAttackCD: 0
   DashStrengthX: 0

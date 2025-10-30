@@ -62,7 +62,7 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         time = barSetter;
         yield return new WaitForSeconds(time);
         // secondStrike = true;
-        if (BasicAttackInput.IsInProgress() /*&& secondStrike*/)
+        if (BasicAttackInput.IsInProgress())
         {
             PlayAttack2();
             time = barSetter;

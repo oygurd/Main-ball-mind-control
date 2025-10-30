@@ -9,25 +9,24 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 {
     //this script is for the melee class attacks, ranged class will have a parallel class as well
     public MeleeWeaponParameters MeleeWeaponParameters;
-    private PlayerInput PlayerInputs;
-    
+    public Melee_AnimationsHandler melee_animationsHandler;
+
+    InputAction melee_inputAction;
+    float raycastDuration;
+
     private void Awake()
     {
-        PlayerInputs = GetComponent<PlayerInput>();
-        MeleeWeaponParameters = GetComponent<MeleeWeaponParameters>();
+        melee_animationsHandler = GetComponent<Melee_AnimationsHandler>();
+        melee_inputAction = InputSystem.actions.FindAction("Attack");
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
+    public void OnAttack()
     {
-        if (context.started)
+        if (melee_inputAction.IsInProgress())
         {
-            VisualPhysics2D.BoxCast(transform.position, new Vector2(), 90, Vector2.right);
+            VisualPhysics2D.BoxCast(transform.position, new Vector2(MeleeWeaponParameters.attackRange,2),90,transform.forward);
         }
     }
-    
-
-    
-
 
     
 }

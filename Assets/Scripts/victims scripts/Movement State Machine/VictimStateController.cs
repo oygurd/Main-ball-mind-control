@@ -62,7 +62,10 @@ public class VictimStateController : SerializedMonoBehaviour
     {
         //movement
         moveInputValue = MoveInput.ReadValue<Vector2>();
-        switch (movementStates)
+        if (moveInputValue.x != 0)
+        {
+            transform.localScale = new Vector3(moveInputValue.x, 1, 1);
+        }        switch (movementStates)
         {
             case MovementStates.Idle:
                 currentState.IdleState();

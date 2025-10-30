@@ -1,4 +1,5 @@
 using System.Collections;
+using Nomnom.RaycastVisualization;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.InputSystem;
@@ -6,79 +7,27 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Melee_AnimationsHandler))]
 public class MeleeClassVictim : SerializedMonoBehaviour
 {
+    //this script is for the melee class attacks, ranged class will have a parallel class as well
     public MeleeWeaponParameters MeleeWeaponParameters;
-
-    public Melee_AnimationsHandler melee_animationsHandler;
-
-    [SerializeField] float time;
-
-    public bool firstStrike;
-    public bool secondStrike;
-    public PlayerInput _inputSystem;
-    public InputAction BasicAttackInput;
-    public InputAction ParryOrGrenadeInput;
-    //public InputAction ThrowableInput;
-
+    private PlayerInput PlayerInputs;
+    
     private void Awake()
     {
-        _inputSystem = GetComponentInParent<PlayerInput>();
-        firstStrike = true;
-        melee_animationsHandler = GetComponent<Melee_AnimationsHandler>();
-        BasicAttackInput = InputSystem.actions.FindAction("Attack");
-        ParryOrGrenadeInput = InputSystem.actions.FindAction("Parry/Grenade");
+        PlayerInputs = GetComponent<PlayerInput>();
+        MeleeWeaponParameters = GetComponent<MeleeWeaponParameters>();
     }
-
-    private void Update()
-    {
-        //Idle();
-        // Attack();
-    }
-
-    public void Idle()
-    {
-        if (!BasicAttackInput.IsPressed())
-        {
-            melee_animationsHandler.PlayIdle();
-        }
-    }
-
-
-    public IEnumerator AttackTime()
-    {
-        secondStrike = false;
-        melee_animationsHandler.PlayAttack1();
-        time = melee_animationsHandler.barSetter;
-        yield return new WaitForSeconds(time);
-        secondStrike = true;
-        if (BasicAttackInput.IsInProgress() && secondStrike)
-        {
-            melee_animationsHandler.PlayAttack2();
-            time = melee_animationsHandler.barSetter;
-        }
-
-        yield return new WaitForSeconds(time);
-        secondStrike = false;
-        firstStrike = true;
-        StartCoroutine(AttackTime());
-    }
-
-   
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.started)
         {
-            StartCoroutine(AttackTime());
-            firstStrike = false;
-            secondStrike = false;
-        }
-        else 
-        {
-            //StopCoroutine(AttackTime());
-            StopAllCoroutines();
-            firstStrike = true;
-            secondStrike = false;
-            Idle();
+            VisualPhysics2D.BoxCast(transform.position, new Vector2(), 90, Vector2.right);
         }
     }
+    
+
+    
+
+
+    
 }

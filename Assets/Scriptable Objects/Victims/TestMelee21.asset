@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponParameters
   Health: 100
   movementSpeed: 3
-  jumpStrength: 0.1
+  jumpStrength: 0.31
   WeaponPrefab: {fileID: 0}
   icon: {fileID: 0}
   baseDamage: 0
   extraHP: 0
-  attackRange: 2.11
+  attackRange: 4.08
   attackSpeed: 0
   dashAttackCD: 0
   DashStrengthX: 0

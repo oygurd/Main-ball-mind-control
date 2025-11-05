@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -42,6 +43,14 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         AnimationTime = barSetter;
     }
 
+    [Button("Play Parry")]
+    public void PlayParry()
+    {
+        MeleeAnimator.Play("Melee_Parry");
+        barSetter = MeleeAttack1Animation.length;
+        AnimationTime = barSetter;
+    }
+
     public PlayerInput _inputSystem;
     public InputAction BasicAttackInput;
     public InputAction ParryOrGrenadeInput;
@@ -53,6 +62,11 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         _inputSystem = GetComponentInParent<PlayerInput>();
         BasicAttackInput = InputSystem.actions.FindAction("Attack");
         ParryOrGrenadeInput = InputSystem.actions.FindAction("Parry/Grenade");
+    }
+
+    private void Update()
+    {
+        
     }
 
     public IEnumerator AttackTime()
@@ -90,8 +104,18 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
             PlayIdle();
         }
     }
-    public IEnumerator AttacksSequencer()
+
+
+    public void OnParry()
     {
-        return null;
+        StartCoroutine(ParrySequencer());
+    }
+    public IEnumerator ParrySequencer()
+    {
+        PlayParry();
+        time = barSetter;
+        yield return new WaitForSeconds(time);
+       // PlayIdle();
+
     }
 }

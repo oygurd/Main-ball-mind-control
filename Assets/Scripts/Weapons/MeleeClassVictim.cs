@@ -19,8 +19,10 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
    public RaycastHit2D weaponRaycastHit;
    public LayerMask WeaponLayerMask;
-    //public ContactFilter2D contactFilter;
-   // List<ContactFilter2D> ContactList = new List<RaycastHit2D>();
+    
+   public RaycastHit2D parryRaycastHit;
+   public LayerMask parryLayerMask;
+   
 
     private void Update()
     {
@@ -40,6 +42,8 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     public void OnParry()
     {
+        parryRaycastHit = Physics2D.BoxCast(transform.position, new Vector2(2, 2),90,transform.right * VictimTransformReference.localScale.x);
+
     }
 
     private void OnDrawGizmos()
@@ -58,6 +62,9 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
             Gizmos.DrawRay(transform.position, transform.right * VictimTransformReference.localScale.x * MeleeWeaponParameters.attackRange);
         }
+        
+        
+        
     }
     
 }

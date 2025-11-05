@@ -142,6 +142,25 @@ MonoBehaviour:
   MeleeAttack1Animation: {fileID: 7400000, guid: 77778c88387c8d34a9cfb29d5b987c56, type: 2}
   MeleeAttack2Animation: {fileID: 7400000, guid: f790204ef610c244c98e31195f57a6b3, type: 2}
   barSetter: 0
+  _inputSystem: {fileID: 0}
+  BasicAttackInput:
+    m_Name: Basic Attack Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: baf5f7bd-80e4-4b51-8d7f-8cb5a43d052b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  ParryOrGrenadeInput:
+    m_Name: Parry Or Grenade Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6dd51642-9a68-41c9-99e2-8426c2826e8e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &6113061229234950028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,25 +184,10 @@ MonoBehaviour:
     SerializationNodes: []
   MeleeWeaponParameters: {fileID: 0}
   melee_animationsHandler: {fileID: 0}
-  time: 0
-  firstStrike: 0
-  secondStrike: 0
-  _inputSystem: {fileID: 0}
-  BasicAttackInput:
-    m_Name: Basic Attack Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 295021d4-cfa7-4b52-b8b3-603d6ca5fe64
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  ParryOrGrenadeInput:
-    m_Name: Parry Or Grenade Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1ed46e93-6150-400c-bbb4-8fa53b612d23
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  VictimTransformReference: {fileID: 0}
+  WeaponLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  parryLayerMask:
+    serializedVersion: 2
+    m_Bits: 0

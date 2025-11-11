@@ -47,7 +47,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     public void OnParryDisplayer()
     {
-        parryRaycastHit = Physics2D.BoxCast(MeleeParrySpot.position, new Vector2(MeleeWeaponParameters.ParryRange, MeleeWeaponParameters.ParryRange),0,transform.right * VictimTransformReference.localScale.x, parryLayerMask);
+        parryRaycastHit = Physics2D.BoxCast(MeleeParrySpot.position, new Vector2(0.5f, MeleeWeaponParameters.ParryRange),0,transform.right * VictimTransformReference.localScale.x, Mathf.Infinity,parryLayerMask);
 
     }
 
@@ -79,7 +79,8 @@ public class MeleeClassVictim : SerializedMonoBehaviour
             {
                 Gizmos.color = Color.green;
             }
-            Gizmos.DrawCube(MeleeParrySpot.position, new Vector2(MeleeWeaponParameters.ParryRange, MeleeWeaponParameters.ParryRange));
+            
+            Gizmos.DrawCube(MeleeParrySpot.position, new Vector2(0.5f, MeleeWeaponParameters.ParryRange));
         }
         
         

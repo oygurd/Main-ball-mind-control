@@ -88,7 +88,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Parry/Grenade",
+                    "name": "AbilityOne",
                     "type": "Button",
                     "id": "32de945a-22ee-4d99-abbd-aeec0e7b4428",
                     "expectedControlType": "",
@@ -489,8 +489,8 @@
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad;Keyboard&Mouse",
-                    "action": "Parry/Grenade",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "AbilityOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -500,8 +500,8 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse;Gamepad",
-                    "action": "Parry/Grenade",
+                    "groups": ";Gamepad",
+                    "action": "AbilityOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

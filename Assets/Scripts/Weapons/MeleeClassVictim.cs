@@ -14,9 +14,12 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     public Melee_AnimationsHandler melee_animationsHandler;
 
     InputAction melee_inputAction;
+    InputAction Melee_Parry;
 
     public Transform VictimTransformReference;
 
+    public Transform MeleeParrySpot;
+    
    public RaycastHit2D weaponRaycastHit;
    public LayerMask WeaponLayerMask;
     
@@ -38,17 +41,19 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     {
         melee_animationsHandler = GetComponent<Melee_AnimationsHandler>();
         melee_inputAction = InputSystem.actions.FindAction("Attack");
+        Melee_Parry = InputSystem.actions.FindAction("AbilityOne");
+
     }
 
-    public void OnParry()
+    public void OnParryDisplayer()
     {
-        parryRaycastHit = Physics2D.BoxCast(transform.position, new Vector2(2, 2),90,transform.right * VictimTransformReference.localScale.x);
+        parryRaycastHit = Physics2D.BoxCast(MeleeParrySpot.position, new Vector2(MeleeWeaponParameters.ParryRange, MeleeWeaponParameters.ParryRange),0,transform.right * VictimTransformReference.localScale.x, parryLayerMask);
 
     }
 
     private void OnDrawGizmos()
     {
-        //basic attack gizmos
+        //basic attack gizmo
         if (melee_inputAction.inProgress)
         {
             if (!weaponRaycastHit)
@@ -62,9 +67,23 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
             Gizmos.DrawRay(transform.position, transform.right * VictimTransformReference.localScale.x * MeleeWeaponParameters.attackRange);
         }
-        
+
+        //parry gizmo
+        if (Melee_Parry.IsPressed())
+        {
+            if (!parryRaycastHit)
+            {
+                Gizmos.color = Color.red;
+            }
+            else if (parryRaycastHit)
+            {
+                Gizmos.color = Color.green;
+            }
+            Gizmos.DrawCube(MeleeParrySpot.position, new Vector2(MeleeWeaponParameters.ParryRange, MeleeWeaponParameters.ParryRange));
+        }
         
         
     }
+
     
 }

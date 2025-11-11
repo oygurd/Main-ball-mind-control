@@ -1084,21 +1084,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Dash Attack[/Keyboard/leftShift,/XInputControllerWindows/leftStickPress]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1631216422}
-        m_TargetAssemblyTypeName: Melee_AnimationsHandler, Assembly-CSharp
-        m_MethodName: OnParry
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1631216421}
         m_TargetAssemblyTypeName: MeleeClassVictim, Assembly-CSharp
-        m_MethodName: OnParryDisplayer
+        m_MethodName: OnParry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1151,7 +1139,7 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 519420031}
@@ -1321,11 +1309,6 @@ Transform:
   - {fileID: 49406919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1570482892 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1371510927217515301, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
-  m_PrefabInstance: {fileID: 1805143564}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1631216420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2125606026151638190, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
@@ -1393,16 +1376,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1870975345}
     m_Modifications:
     - target: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      propertyPath: BasicAttackInput.m_Name
+      value: Basic Attack Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
-    - target: {fileID: 1371510927217515301, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 1371510927217515301, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
+    - target: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      propertyPath: ParryOrGrenadeInput.m_Name
+      value: Parry Or Grenade Input
       objectReference: {fileID: 0}
     - target: {fileID: 2125606026151638190, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1449,9 +1432,13 @@ PrefabInstance:
       value: Katana_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
-      propertyPath: MeleeParrySpot
+      propertyPath: MeleeWeaponParameters
       value: 
-      objectReference: {fileID: 1570482892}
+      objectReference: {fileID: 11400000, guid: ae9719849cbd2484995e418098f0687e, type: 2}
+    - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      propertyPath: WeaponLayerMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: VictimTransformReference
       value: 
@@ -1459,6 +1446,18 @@ PrefabInstance:
     - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: serializationData.Prefab
       value: 
+      objectReference: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+    - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      propertyPath: contactFilter.useTriggers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      propertyPath: contactFilter.useLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      propertyPath: contactFilter.layerMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

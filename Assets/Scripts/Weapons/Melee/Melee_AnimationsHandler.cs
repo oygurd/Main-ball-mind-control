@@ -61,12 +61,11 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         MeleeAnimator = GetComponent<Animator>();
         _inputSystem = GetComponentInParent<PlayerInput>();
         BasicAttackInput = InputSystem.actions.FindAction("Attack");
-        ParryOrGrenadeInput = InputSystem.actions.FindAction("Parry/Grenade");
+        ParryOrGrenadeInput = InputSystem.actions.FindAction("AbilityOne");
     }
 
     private void Update()
     {
-        
     }
 
     public IEnumerator AttackTime()
@@ -106,16 +105,19 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
     }
 
 
-    public void OnParry()
+    public void OnParry(InputAction.CallbackContext context)
     {
-        StartCoroutine(ParrySequencer());
+        if (context.phase == InputActionPhase.Performed)
+        {
+            StartCoroutine(ParrySequencer());
+        }
     }
+
     public IEnumerator ParrySequencer()
     {
         PlayParry();
         time = barSetter;
         yield return new WaitForSeconds(time);
-       // PlayIdle();
-
+        PlayIdle();
     }
 }

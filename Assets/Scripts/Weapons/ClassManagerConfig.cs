@@ -36,5 +36,5 @@ public class MeleeWeaponParameters : ClassManagerConfig
     public float baseDamage, extraHP, attackRange, attackSpeed;
 
     [TabGroup("Class", "Melee Class Ability stats", SdfIconType.Activity, TextColor = "Green")]
-    public float dashAttackCD, DashStrengthX, DashStrengthY, parrySpeed, ParryCd;
+    public float dashAttackCD, DashStrengthX, DashStrengthY, parrySpeed, ParryCd, ParryRange;
 }

@@ -4,9 +4,12 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.Analytics;
 using UnityEngine.InputSystem;
+using System.Threading.Tasks;
 
 public class Melee_AnimationsHandler : SerializedMonoBehaviour
 {
+    public MeleeWeaponParameters meleeWeaponParameters;
+
     [HideLabel] [ProgressBar(0, "barSetter", r: 0, g: 1, b: 0, Height = 30)]
     public float AnimationTime;
 
@@ -43,6 +46,9 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         AnimationTime = barSetter;
     }
 
+
+   public bool didParry;
+
     [Button("Play Parry")]
     public void PlayParry()
     {
@@ -54,7 +60,7 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
     public PlayerInput _inputSystem;
     public InputAction BasicAttackInput;
     public InputAction ParryOrGrenadeInput;
-    private float time;
+    private float timer;
 
     private void Awake()
     {
@@ -62,6 +68,8 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         _inputSystem = GetComponentInParent<PlayerInput>();
         BasicAttackInput = InputSystem.actions.FindAction("Attack");
         ParryOrGrenadeInput = InputSystem.actions.FindAction("AbilityOne");
+
+        didParry = true;
     }
 
     private void Update()
@@ -72,16 +80,16 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
     {
         // secondStrike = false;
         PlayAttack1();
-        time = barSetter;
-        yield return new WaitForSeconds(time);
+        timer = barSetter;
+        yield return new WaitForSeconds(timer);
         // secondStrike = true;
         if (BasicAttackInput.IsInProgress())
         {
             PlayAttack2();
-            time = barSetter;
+            timer = barSetter;
         }
 
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(timer);
         //secondStrike = false;
         // firstStrike = true;
         StartCoroutine(AttackTime());
@@ -107,8 +115,10 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
 
     public void OnParry(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && didParry)
         {
+            didParry = false;
+            PlayParryy();
             StartCoroutine(ParrySequencer());
         }
     }
@@ -116,8 +126,20 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
     public IEnumerator ParrySequencer()
     {
         PlayParry();
-        time = barSetter;
-        yield return new WaitForSeconds(time);
+        timer = barSetter;
+        yield return new WaitForSeconds(timer);
         PlayIdle();
+    }
+
+    async Task ParryCd()
+    {
+        await Task.Delay((int)meleeWeaponParameters.ParryCd * 1000);
+    }
+
+    async void PlayParryy()
+    {
+        didParry = false;
+        await ParryCd();
+        didParry = true;
     }
 }

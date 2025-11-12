@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using Nomnom.RaycastVisualization;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Melee_AnimationsHandler))]
@@ -19,20 +16,21 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     public Transform VictimTransformReference;
 
     public Transform MeleeParrySpot;
-    
-   public RaycastHit2D weaponRaycastHit;
-   public LayerMask WeaponLayerMask;
-    
-   public RaycastHit2D parryRaycastHit;
-   public LayerMask parryLayerMask;
-   private bool canParry;
-   
+
+    public RaycastHit2D weaponRaycastHit;
+    public LayerMask WeaponLayerMask;
+
+    public RaycastHit2D parryRaycastHit;
+    public LayerMask parryLayerMask;
+    private bool ParryCd;
+    private bool canParry;
+
 
     private void Update()
     {
         if (melee_inputAction.inProgress)
         {
-           weaponRaycastHit = Physics2D.Raycast(transform.position,
+            weaponRaycastHit = Physics2D.Raycast(transform.position,
                 transform.right * VictimTransformReference.localScale.x,
                 MeleeWeaponParameters.attackRange, WeaponLayerMask);
         }
@@ -43,19 +41,22 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         melee_animationsHandler = GetComponent<Melee_AnimationsHandler>();
         melee_inputAction = InputSystem.actions.FindAction("Attack");
         Melee_Parry = InputSystem.actions.FindAction("AbilityOne");
-
     }
 
     public void OnParryDisplayer()
     {
+        StartCoroutine(ParryCdSequencer());
+        if (ParryCd == false)
+            return;
         StartCoroutine(ParryTime());
+
+
         if (canParry)
-        { 
+        {
             parryRaycastHit = Physics2D.Raycast(MeleeParrySpot.transform.position,
                 transform.right * VictimTransformReference.localScale.x,
                 MeleeWeaponParameters.ParryRange, parryLayerMask);
         }
-
     }
 
     private void OnDrawGizmos()
@@ -72,13 +73,14 @@ public class MeleeClassVictim : SerializedMonoBehaviour
                 Gizmos.color = Color.green;
             }
 
-            Gizmos.DrawRay(transform.position, transform.right * VictimTransformReference.localScale.x * MeleeWeaponParameters.attackRange);
+            Gizmos.DrawRay(transform.position,
+                transform.right * VictimTransformReference.localScale.x * MeleeWeaponParameters.attackRange);
         }
 
         //parry gizmo
         if (canParry)
         {
-            if (!parryRaycastHit&& canParry)
+            if (!parryRaycastHit && canParry)
             {
                 Gizmos.color = Color.red;
             }
@@ -87,19 +89,24 @@ public class MeleeClassVictim : SerializedMonoBehaviour
                 Gizmos.color = Color.green;
                 Debug.Log(parryRaycastHit.transform.name);
             }
-            
-            Gizmos.DrawRay(MeleeParrySpot.transform.position, transform.right * VictimTransformReference.localScale.x * MeleeWeaponParameters.ParryRange);
+
+            Gizmos.DrawRay(MeleeParrySpot.transform.position,
+                transform.right * VictimTransformReference.localScale.x * MeleeWeaponParameters.ParryRange);
         }
-        
-        
     }
 
+
+    IEnumerator ParryCdSequencer()
+    {
+        ParryCd = true;
+        yield return new WaitForSeconds(MeleeWeaponParameters.ParryCd);
+        ParryCd = false;
+    }
 
     IEnumerator ParryTime()
     {
         canParry = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(melee_animationsHandler.barSetter);
         canParry = false;
     }
-    
 }

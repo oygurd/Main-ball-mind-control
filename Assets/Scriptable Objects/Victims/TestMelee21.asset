@@ -25,5 +25,5 @@ MonoBehaviour:
   DashStrengthX: 0
   DashStrengthY: 0
   parrySpeed: 0
-  ParryCd: 0
+  ParryCd: 2
   ParryRange: 1.18

@@ -1169,7 +1169,7 @@ MonoBehaviour:
   victimRigidbody: {fileID: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 7
+    m_Bits: 3
   isGrounded: 0
   rayDistance: 0.45
   jumpCount: 0
@@ -1339,16 +1339,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1870975345}
     m_Modifications:
     - target: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
-      propertyPath: meleeWeaponParameters
-      value: 
-      objectReference: {fileID: 11400000, guid: ae9719849cbd2484995e418098f0687e, type: 2}
-    - target: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
     - target: {fileID: 1371510927217515301, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.67
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 1371510927217515301, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_LocalPosition.y

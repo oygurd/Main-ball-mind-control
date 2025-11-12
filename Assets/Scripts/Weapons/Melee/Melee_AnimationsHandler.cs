@@ -47,12 +47,21 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
     }
 
 
-   public bool didParry;
+    public bool didParry;
 
     [Button("Play Parry")]
     public void PlayParry()
     {
         MeleeAnimator.Play("Melee_Parry");
+        barSetter = MeleeAttack1Animation.length;
+        AnimationTime = barSetter;
+    }
+
+    public bool canDash;
+    [Button("Play Dash Attack")]
+    public void PlayDash()
+    {
+        MeleeAnimator.Play(("Melee_Dash"));
         barSetter = MeleeAttack1Animation.length;
         AnimationTime = barSetter;
     }
@@ -70,6 +79,7 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         ParryOrGrenadeInput = InputSystem.actions.FindAction("AbilityOne");
 
         didParry = true;
+        canDash = true;
     }
 
     private void Update()
@@ -118,7 +128,7 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         if (context.phase == InputActionPhase.Performed && didParry)
         {
             didParry = false;
-            PlayParryy();
+            PlayParryCd();
             StartCoroutine(ParrySequencer());
         }
     }
@@ -136,10 +146,25 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
         await Task.Delay((int)meleeWeaponParameters.ParryCd * 1000);
     }
 
-    async void PlayParryy()
+    async void PlayParryCd()
     {
         didParry = false;
         await ParryCd();
         didParry = true;
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && canDash)
+        {
+            PlayDash();
+        }
+    }
+
+    IEnumerator DashCd()
+    {
+        canDash = false;
+        yield return new WaitForSeconds(meleeWeaponParameters.dashAttackCD);
+        canDash = true;
     }
 }

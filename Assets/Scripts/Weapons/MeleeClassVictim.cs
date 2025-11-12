@@ -25,6 +25,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     private bool ParryCd;
     private bool canParry;
 
+    public bool CanDash;
 
     private void Update()
     {
@@ -41,6 +42,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         melee_animationsHandler = GetComponent<Melee_AnimationsHandler>();
         melee_inputAction = InputSystem.actions.FindAction("Attack");
         Melee_Parry = InputSystem.actions.FindAction("AbilityOne");
+        CanDash = true;
     }
 
     public void OnParryDisplayer()
@@ -50,7 +52,6 @@ public class MeleeClassVictim : SerializedMonoBehaviour
             return;
         StartCoroutine(ParryTime());
 
-
         if (canParry)
         {
             parryRaycastHit = Physics2D.Raycast(MeleeParrySpot.transform.position,
@@ -58,6 +59,18 @@ public class MeleeClassVictim : SerializedMonoBehaviour
                 MeleeWeaponParameters.ParryRange, parryLayerMask);
         }
     }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && CanDash)
+        {
+            StartCoroutine(DashCd());
+            VictimTransformReference.position +=
+                VictimTransformReference.localScale.x * VictimTransformReference.right *
+                MeleeWeaponParameters.DashStrengthX;
+        }
+    }
+
 
     private void OnDrawGizmos()
     {
@@ -95,6 +108,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         }
     }
 
+    #region ParryStuff
 
     IEnumerator ParryCdSequencer()
     {
@@ -109,4 +123,18 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         yield return new WaitForSeconds(melee_animationsHandler.barSetter);
         canParry = false;
     }
+
+    #endregion
+
+
+    #region DashStuff
+
+    IEnumerator DashCd()
+    {
+        CanDash = false;
+        yield return new WaitForSeconds(MeleeWeaponParameters.dashAttackCD);
+        CanDash = true;
+    }
+
+    #endregion
 }

@@ -21,9 +21,8 @@ MonoBehaviour:
   extraHP: 20
   attackRange: 4
   attackSpeed: 0
-  dashAttackCD: 0
-  DashStrengthX: 0
+  dashAttackCD: 2
+  DashStrengthX: 2
   DashStrengthY: 0
-  parrySpeed: 0
   ParryCd: 2
   ParryRange: 1.18

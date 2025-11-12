@@ -1025,7 +1025,19 @@ MonoBehaviour:
     m_ActionId: b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba
     m_ActionName: 'Player/Next[/Keyboard/2,/XInputControllerWindows/dpad/right]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1631216421}
+        m_TargetAssemblyTypeName: MeleeClassVictim, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 641cd816-40e6-41b4-8c3d-04687c349290
     m_ActionName: 'Player/Dash Attack[/Keyboard/leftShift,/XInputControllerWindows/leftStickPress]'
   - m_PersistentCalls:
@@ -1175,7 +1187,7 @@ MonoBehaviour:
   jumpCount: 0
   didJump: 0
   airTime: 0
-  airTimeSetter: 0.4
+  airTimeSetter: 0.2
   movementStates: 0
 --- !u!114 &937530916
 MonoBehaviour:
@@ -1345,7 +1357,7 @@ PrefabInstance:
     - target: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 575054682780356309, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
     - target: {fileID: 1371510927217515301, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.67

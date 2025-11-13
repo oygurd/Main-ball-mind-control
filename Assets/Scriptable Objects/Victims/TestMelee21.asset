@@ -22,7 +22,7 @@ MonoBehaviour:
   attackRange: 4
   attackSpeed: 0
   dashAttackCD: 2
-  DashStrengthX: 2
-  DashStrengthY: 0
+  DashStrengthX: 15
+  DashStrengthY: 1
   ParryCd: 2
   ParryRange: 1.18

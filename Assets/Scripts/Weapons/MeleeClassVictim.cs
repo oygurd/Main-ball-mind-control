@@ -26,6 +26,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     private bool canParry;
 
     public bool CanDash;
+    [SerializeField] Rigidbody2D victimRigidbody;
 
     private void Update()
     {
@@ -43,6 +44,8 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         melee_inputAction = InputSystem.actions.FindAction("Attack");
         Melee_Parry = InputSystem.actions.FindAction("AbilityOne");
         CanDash = true;
+
+        victimRigidbody = GetComponentInParent<Rigidbody2D>();
     }
 
     public void OnParryDisplayer()
@@ -65,9 +68,16 @@ public class MeleeClassVictim : SerializedMonoBehaviour
         if (context.phase == InputActionPhase.Performed && CanDash)
         {
             StartCoroutine(DashCd());
-            VictimTransformReference.position +=
+            /*VictimTransformReference.position +=
                 VictimTransformReference.localScale.x * VictimTransformReference.right *
-                MeleeWeaponParameters.DashStrengthX;
+                MeleeWeaponParameters.DashStrengthX;*/
+            GravityManager.instance.SetGravityScale(1,3);
+            victimRigidbody.AddForce(VictimTransformReference.localScale.x * VictimTransformReference.right *
+                                     MeleeWeaponParameters.DashStrengthX, ForceMode2D.Impulse);
+            victimRigidbody.linearDamping = 10;
+            GravityManager.instance.ResetPriority();
+            
+
         }
     }
 

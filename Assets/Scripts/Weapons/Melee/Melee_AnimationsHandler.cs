@@ -157,13 +157,16 @@ public class Melee_AnimationsHandler : SerializedMonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed && canDash)
         {
-            PlayDash();
+            StartCoroutine(DashCd());
         }
     }
 
     IEnumerator DashCd()
     {
+        PlayDash();
         canDash = false;
+        yield return new WaitForSeconds(timer);
+        PlayIdle();
         yield return new WaitForSeconds(meleeWeaponParameters.dashAttackCD);
         canDash = true;
     }

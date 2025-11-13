@@ -120,7 +120,7 @@ public class VictimStateController : SerializedMonoBehaviour
             didJump = false;
             airTime = airTimeSetter; // need to adjust it to any victim based on wepaon
 
-            victimRigidbody.gravityScale = 1f;
+            GravityManager.instance.SetGravityScale(1,1);
             victimRigidbody.linearDamping = 5;
 
             Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.green);
@@ -138,7 +138,7 @@ public class VictimStateController : SerializedMonoBehaviour
                 airTime -= 1 * Time.deltaTime;
                 if (airTime <= 0)
                 {
-                    victimRigidbody.gravityScale = 4;
+                    GravityManager.instance.SetGravityScale(4,2);
                     victimRigidbody.linearDamping = 2;
                 }
             }

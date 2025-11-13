@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -20,7 +21,10 @@ public class BallController : SerializedMonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isHeld)
+        {
+            AttachToHost();
+        }
     }
 
     public void AttachToHost()
@@ -30,8 +34,15 @@ public class BallController : SerializedMonoBehaviour
 
     public void DetachFromHost()
     {
-        transform.position = Vector2.MoveTowards(transform.position, ballTransform.position,0.1f); //for now
+        transform.position = transform.position;
     }
-    
-    
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Victim"))
+        {
+            victimHoldingBall = other.collider.transform;
+            isHeld = true;
+        }
+    }
 }

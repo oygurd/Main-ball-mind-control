@@ -1,0 +1,45 @@
+using UnityEngine;
+
+public class BallAttachDettachController : MonoBehaviour
+{
+    //public static BallController BallControllerInstance;
+    public bool isHeld;
+    public Transform victimHoldingBall;
+    
+    [SerializeField] GameObject BallGameObject;
+    [SerializeField] Transform ballTransform;
+    [SerializeField] Rigidbody2D ballRb;
+
+    [SerializeField] CircleCollider2D ballCollider;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        ballCollider = GetComponent<CircleCollider2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isHeld)
+        {
+            AttachToHost();
+            ballCollider.enabled = false;
+        }
+        else
+        {
+            DetachFromHost();
+        }
+    }
+
+    public void AttachToHost()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, victimHoldingBall.position, 1f);
+        transform.SetParent(victimHoldingBall);
+    }
+
+    public void DetachFromHost()
+    {
+        transform.position = transform.position;
+    }
+}

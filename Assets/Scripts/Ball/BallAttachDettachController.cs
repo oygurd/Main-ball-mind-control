@@ -1,6 +1,7 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class BallAttachDettachController : MonoBehaviour
+public class BallAttachDettachController : SerializedMonoBehaviour
 {
     //public static BallController BallControllerInstance;
     public bool isHeld;

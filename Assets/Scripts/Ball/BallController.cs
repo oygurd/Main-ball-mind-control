@@ -21,4 +21,9 @@ public class BallController : SerializedMonoBehaviour
     {
         
     }
+
+    public void SmallRoll()
+    {
+        
+    }
 }

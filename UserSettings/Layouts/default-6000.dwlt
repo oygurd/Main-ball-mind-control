@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 9}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 126
+  controlID: 128
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 49
+  controlID: 159
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -468,7 +468,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -62992
+  m_LastSelectedObjectID: 55398
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -516,7 +516,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts/Ball
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -526,16 +526,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts/Ball
   m_LastFoldersGridSize: 16
   m_LastProjectPath: E:\Video Game Development\Unity Games\Main-ball-mind-control
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 06d90000
-    m_LastClickedID: 55558
-    m_ExpandedIDs: 00000000acd80000
+    m_SelectedIDs: 8ad90000
+    m_LastClickedID: 55690
+    m_ExpandedIDs: 0000000078d70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -564,7 +564,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000acd80000
+    m_ExpandedIDs: 0000000078d70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -648,7 +648,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 43
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -695,7 +695,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d4faffffd6faffff04d8000038d80000
+      m_ExpandedIDs: d6faffff1ad8000054d80000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 17.208271, y: -2.7136667, z: -0.03374132}
     speed: 2
-    m_Value: {x: 1.5517939, y: -4.5338535, z: -0.13116725}
+    m_Value: {x: 17.208271, y: -2.7136667, z: -0.03374132}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 3.6531374
     speed: 2
-    m_Value: 15.759194
+    m_Value: 3.6531374
   m_Ortho:
     m_Target: 1
     speed: 2

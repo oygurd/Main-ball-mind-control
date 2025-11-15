@@ -11,9 +11,6 @@ public class VictimStateController : SerializedMonoBehaviour
     //state machine
     public VictimMoveStates currentState;
 
-    //ball holder
-    public Transform BallHolderObject;
-
     //input system
     [HideInInspector] public InputAction MoveInput;
     [HideInInspector] public Vector2 moveInputValue;
@@ -25,6 +22,7 @@ public class VictimStateController : SerializedMonoBehaviour
     //ground detection
     [SerializeField] LayerMask groundLayer = 0;
     [SerializeField] bool isGrounded;
+    [InfoBox("Ray distance should be 0.45 in normal circumstances")]
     [SerializeField] float rayDistance;
     [SerializeField] int jumpCount;
     [SerializeField] private bool didJump;

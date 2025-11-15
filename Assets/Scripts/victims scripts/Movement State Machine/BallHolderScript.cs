@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallHolderScript : SerializedMonoBehaviour
 {
+    [Required("Must be the -Ball Holder- empty object")]
     public Transform BallHolderEmpty;
     private BallAttachDettachController _ballController;
 

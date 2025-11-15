@@ -1893,6 +1893,7 @@ GameObject:
   - component: {fileID: 2146074927}
   - component: {fileID: 2146074930}
   - component: {fileID: 2146074929}
+  - component: {fileID: 2146074931}
   m_Layer: 0
   m_Name: ball (player)
   m_TagString: Ball
@@ -2057,6 +2058,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  canUseAbilities: 0
 --- !u!114 &2146074930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2069,12 +2071,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa44ac2d20803142b2ac4e64820530e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallAttachDettachController
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   isHeld: 0
   victimHoldingBall: {fileID: 0}
   BallGameObject: {fileID: 0}
   ballTransform: {fileID: 0}
   ballRb: {fileID: 0}
   ballCollider: {fileID: 0}
+--- !u!114 &2146074931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146074924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c78681cdc8d3a14faeec537cb4a4f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallScriptsObserver
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

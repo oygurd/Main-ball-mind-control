@@ -5,13 +5,14 @@ using UnityEngine;
 public class BallController : SerializedMonoBehaviour
 {
     BallAttachDettachController _ballAttachDettachController;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    public bool canUseAbilities;
+    
     private void Update()
     {
         if (_ballAttachDettachController.isHeld)
         {
-            
+            canUseAbilities = false;
         }
     }
 
@@ -26,4 +27,5 @@ public class BallController : SerializedMonoBehaviour
     {
         
     }
+    
 }

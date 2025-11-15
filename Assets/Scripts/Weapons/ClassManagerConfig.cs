@@ -6,7 +6,7 @@ using Sirenix.Serialization;
 
 // This code is for the stats of the victims and their classes, do not delete this!
 [CreateAssetMenu(fileName = "ClassManagerConfig", menuName = "Classes/ClassManagerConfig")]
-public class ClassManagerConfig : ScriptableObject
+public class ClassManagerConfig : SerializedScriptableObject
 {
     [TabGroup("Class", "Base Stats", SdfIconType.Heart)]
     public float Health, movementSpeed, jumpStrength;

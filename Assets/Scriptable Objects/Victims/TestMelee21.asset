@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: TestMelee21
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponParameters
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   Health: 100
   movementSpeed: 3
   jumpStrength: 0.31

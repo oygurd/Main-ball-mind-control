@@ -22,7 +22,7 @@ public class VictimStateController : SerializedMonoBehaviour
     //ground detection
     [SerializeField] LayerMask groundLayer = 0;
     [SerializeField] bool isGrounded;
-    [InfoBox("Ray distance should be 0.45 in normal circumstances")]
+    [InfoBox("Ray distance should be 0.45 under normal circumstances")]
     [SerializeField] float rayDistance;
     [SerializeField] int jumpCount;
     [SerializeField] private bool didJump;

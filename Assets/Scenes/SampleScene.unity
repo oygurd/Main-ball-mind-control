@@ -793,8 +793,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 937530908}
+  - component: {fileID: 937530920}
   - component: {fileID: 937530918}
   - component: {fileID: 937530917}
+  - component: {fileID: 937530919}
   - component: {fileID: 937530907}
   - component: {fileID: 937530910}
   - component: {fileID: 937530909}
@@ -1172,7 +1174,6 @@ MonoBehaviour:
     SerializationNodes: []
   isControlled: 0
   currentState: {fileID: 0}
-  BallHolderObject: {fileID: 1860622000}
   MoveInput:
     m_Name: 
     m_Type: 0
@@ -1272,6 +1273,44 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   BallHolderEmpty: {fileID: 1860622000}
+--- !u!114 &937530919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937530903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed8d0cb9778c26479abe6c80293cf7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VictimAnimationsManager
+--- !u!114 &937530920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937530903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70c92cf173c71a43a90e32f9ad02ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VictimMindStateManager
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isControlled: 0
+  _victimStateControllerScript: {fileID: 0}
+  _victimMoveStateScript: {fileID: 0}
+  _ballHolderScript: {fileID: 0}
+  _victimFreeWillScript: {fileID: 0}
 --- !u!1 &1002583638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,7 +1527,7 @@ PrefabInstance:
     - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,0 +1,11 @@
+OVDF v1.0
+MeleeClassVictim, Assembly-CSharp
+
+# MeleeWeaponParameters
++ [Sirenix.OdinInspector.AssetSelectorAttribute]
+- [Sirenix.OdinInspector.InlineEditorAttribute]
+	DrawHeader = False
+	DrawPreview = False
+	MaxHeight = 0.54
+	PreviewHeight = 36.45
+	DrawGUI = True

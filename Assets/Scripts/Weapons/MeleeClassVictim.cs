@@ -13,8 +13,10 @@ public class MeleeClassVictim : SerializedMonoBehaviour
     InputAction melee_inputAction;
     InputAction Melee_Parry;
 
+    [Required("Put the victims's transform here!")]
     public Transform VictimTransformReference;
 
+    [Required("Put the melee weapon's transform here!")]
     public Transform MeleeParrySpot;
 
     public RaycastHit2D weaponRaycastHit;
@@ -71,13 +73,11 @@ public class MeleeClassVictim : SerializedMonoBehaviour
             /*VictimTransformReference.position +=
                 VictimTransformReference.localScale.x * VictimTransformReference.right *
                 MeleeWeaponParameters.DashStrengthX;*/
-            GravityManager.instance.SetGravityScale(1,3);
+            GravityManager.instance.SetGravityScale(1, 3);
             victimRigidbody.AddForce(VictimTransformReference.localScale.x * VictimTransformReference.right *
                                      MeleeWeaponParameters.DashStrengthX, ForceMode2D.Impulse);
             victimRigidbody.linearDamping = 10;
             GravityManager.instance.ResetPriority();
-            
-
         }
     }
 

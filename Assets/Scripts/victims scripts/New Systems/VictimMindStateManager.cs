@@ -11,7 +11,11 @@ public class VictimMindStateManager : SerializedMonoBehaviour
     //controlled state scripts
     [InfoBox("These scripts will be enabled when the ball is held")]
     public VictimStateController _victimStateControllerScript;
+
     public VictimMoveStates _victimMoveStateScript;
+    public VictimAnimationsManager _victimAnimationsScript;
+
+    public Melee_AnimationsHandler _meleeAnimationsScript;
 
     //ball holder
     [InfoBox("Just the ball holding script")]
@@ -29,5 +33,19 @@ public class VictimMindStateManager : SerializedMonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isControlled)
+        {
+            _victimMoveStateScript.enabled = true;
+            _victimStateControllerScript.enabled = true;
+            _victimAnimationsScript.enabled = true;
+            _meleeAnimationsScript.enabled = true;
+        }
+        else
+        {
+            _victimMoveStateScript.enabled = false;
+            _victimStateControllerScript.enabled = false;
+            _victimAnimationsScript.enabled = false;
+            _meleeAnimationsScript.enabled = false;
+        }
     }
 }

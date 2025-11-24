@@ -17,6 +17,7 @@ public class BallAttachDettachController : SerializedMonoBehaviour
     private void Awake()
     {
         ballCollider = GetComponent<CircleCollider2D>();
+        ballRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -26,6 +27,7 @@ public class BallAttachDettachController : SerializedMonoBehaviour
         {
             AttachToHost();
             ballCollider.enabled = false;
+            ballRb.simulated = false;
         }
         else
         {
@@ -42,5 +44,8 @@ public class BallAttachDettachController : SerializedMonoBehaviour
     public void DetachFromHost()
     {
         transform.position = transform.position;
+        ballRb.simulated = true;
+
+        
     }
 }

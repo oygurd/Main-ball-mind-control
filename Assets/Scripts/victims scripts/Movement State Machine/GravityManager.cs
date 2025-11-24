@@ -29,7 +29,7 @@ public class GravityManager : SerializedMonoBehaviour
             gravityScale = newScale;
             victimRigidbody.gravityScale = gravityScale;
         }
-        else if (newPriority < GetCurrentPriority())
+        else if (priority < GetCurrentPriority())
         {
             priority = newPriority;
         }
@@ -42,7 +42,8 @@ public class GravityManager : SerializedMonoBehaviour
 
     public void ResetPriority()
     {
+        victimRigidbody.gravityScale = 1;
         newPriority = 0;
-        
+
     }
 }

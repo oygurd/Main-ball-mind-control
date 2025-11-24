@@ -185,6 +185,7 @@ public class ControlledMechanicVictim : SerializedMonoBehaviour
             airTime = airTimeSetter;
             victimRigidbody.gravityScale = 1f;
             victimRigidbody.linearDamping = 5;
+            GravityManager.instance.ResetPriority();
         }
         else if (hit.collider == null)
         {

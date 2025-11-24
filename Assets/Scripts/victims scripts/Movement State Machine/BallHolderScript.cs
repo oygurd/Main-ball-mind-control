@@ -6,11 +6,15 @@ public class BallHolderScript : SerializedMonoBehaviour
 {
     [Required("Must be the -Ball Holder- empty object")]
     public Transform BallHolderEmpty;
+
     private BallAttachDettachController _ballController;
+
+    VictimMindStateManager _victimMindStateManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _victimMindStateManager = GetComponent<VictimMindStateManager>();
     }
 
     // Update is called once per frame
@@ -25,6 +29,7 @@ public class BallHolderScript : SerializedMonoBehaviour
             _ballController = other.collider.GetComponent<BallAttachDettachController>();
             _ballController.isHeld = true;
             _ballController.victimHoldingBall = BallHolderEmpty;
+            _victimMindStateManager.isControlled = true;
         }
     }
 }

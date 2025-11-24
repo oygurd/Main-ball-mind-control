@@ -1,5 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.InputSystem;
 
 
 public class VictimMindStateManager : SerializedMonoBehaviour
@@ -10,6 +11,7 @@ public class VictimMindStateManager : SerializedMonoBehaviour
 
     //controlled state scripts
     [InfoBox("These scripts will be enabled when the ball is held")]
+    public PlayerInput controller;
     public VictimStateController _victimStateControllerScript;
 
     public VictimMoveStates _victimMoveStateScript;
@@ -39,6 +41,7 @@ public class VictimMindStateManager : SerializedMonoBehaviour
             _victimStateControllerScript.enabled = true;
             _victimAnimationsScript.enabled = true;
             _meleeAnimationsScript.enabled = true;
+            controller.enabled = true;
         }
         else
         {
@@ -46,6 +49,7 @@ public class VictimMindStateManager : SerializedMonoBehaviour
             _victimStateControllerScript.enabled = false;
             _victimAnimationsScript.enabled = false;
             _meleeAnimationsScript.enabled = false;
+            controller.enabled = false;
         }
     }
 }

@@ -18,18 +18,21 @@ public class VictimStateController : SerializedMonoBehaviour
 
     //rigidbody
     public Rigidbody2D victimRigidbody;
-    
+
     //ground detection
     [SerializeField] LayerMask groundLayer = 0;
     [SerializeField] bool isGrounded;
-    [InfoBox("Ray distance should be 0.45 under normal circumstances")]
-    [SerializeField] float rayDistance;
+
+    [InfoBox("Ray distance should be 0.45 under normal circumstances")] [SerializeField]
+    float rayDistance;
+
     [SerializeField] int jumpCount;
     [SerializeField] private bool didJump;
     [SerializeField] float airTime;
-    
-    [Required("Cannot be 0!")]
-    public float airTimeSetter;
+
+    private RaycastHit2D hit;
+
+    [Required("Cannot be 0!")] public float airTimeSetter;
 
     public enum MovementStates
     {
@@ -39,12 +42,12 @@ public class VictimStateController : SerializedMonoBehaviour
     }
 
     public MovementStates movementStates;
-    
+
     private void Awake()
     {
         currentState = GetComponent<VictimMoveStates>();
         currentState.enabled = true;
-        
+
         //inputsystem
         MoveInput = InputSystem.actions.FindAction("Move");
         JumpInput = InputSystem.actions.FindAction("Jump");
@@ -63,7 +66,9 @@ public class VictimStateController : SerializedMonoBehaviour
         if (moveInputValue.x != 0)
         {
             transform.localScale = new Vector3(moveInputValue.x, 1, 1);
-        }        switch (movementStates)
+        }
+
+        switch (movementStates)
         {
             case MovementStates.Idle:
                 currentState.IdleState();
@@ -79,10 +84,9 @@ public class VictimStateController : SerializedMonoBehaviour
 
         RaycastGroundCheck();
         ChangeMovementState();
-        
+
+        CoyoteTime();
         //actions
-        
-        
     }
 
 
@@ -98,7 +102,7 @@ public class VictimStateController : SerializedMonoBehaviour
             movementStates = MovementStates.Walking;
         }
 
-        if (JumpInput.IsPressed() && isGrounded )
+        if (JumpInput.IsPressed() && isGrounded)
         {
             movementStates = MovementStates.Jumping;
         }
@@ -108,7 +112,7 @@ public class VictimStateController : SerializedMonoBehaviour
     public void RaycastGroundCheck()
     {
         //managing the ground detection -----------------
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+       hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
 
         if (hit.collider != null)
         {
@@ -118,11 +122,10 @@ public class VictimStateController : SerializedMonoBehaviour
             didJump = false;
             airTime = airTimeSetter; // need to adjust it to any victim based on wepaon
 
-            GravityManager.instance.SetGravityScale(1,1);
+            GravityManager.instance.SetGravityScale(1, 1);
             victimRigidbody.linearDamping = 5;
 
             Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.green);
-            
         }
 
         else if (hit.collider == null)
@@ -130,19 +133,26 @@ public class VictimStateController : SerializedMonoBehaviour
             isGrounded = false;
             jumpCount = 0;
             didJump = true;
-            
+
             if (airTime != 0)
             {
                 airTime -= 1 * Time.deltaTime;
                 if (airTime <= 0)
                 {
-                    GravityManager.instance.SetGravityScale(4,2);
+                    GravityManager.instance.SetGravityScale(4, 2);
                     victimRigidbody.linearDamping = 2;
                 }
             }
 
             Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.red);
         }
+    }
 
+    public void CoyoteTime()
+    {
+        if (!didJump && hit.collider == null)
+        {
+            jumpCount = 1;
+        }
     }
 }

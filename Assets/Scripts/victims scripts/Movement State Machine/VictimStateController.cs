@@ -31,6 +31,9 @@ public class VictimStateController : SerializedMonoBehaviour
     [SerializeField] float airTime;
 
     private RaycastHit2D hit;
+    private RaycastHit2D coyoteTimeHit1;
+    private RaycastHit2D coyoteTimeHit2;
+
 
     [Required("Cannot be 0!")] public float airTimeSetter;
 
@@ -132,7 +135,7 @@ public class VictimStateController : SerializedMonoBehaviour
         {
             isGrounded = false;
             jumpCount = 0;
-            didJump = true;
+            //didJump = true;
 
             if (airTime != 0)
             {
@@ -150,6 +153,9 @@ public class VictimStateController : SerializedMonoBehaviour
 
     public void CoyoteTime()
     {
+        coyoteTimeHit1 = Physics2D.Raycast(new Vector2(1,transform.position.y), Vector2.down, rayDistance, groundLayer);
+        Debug.DrawRay(new Vector2(1, transform.position.y), Vector2.down * rayDistance, Color.red);
+        
         if (!didJump && hit.collider == null)
         {
             jumpCount = 1;

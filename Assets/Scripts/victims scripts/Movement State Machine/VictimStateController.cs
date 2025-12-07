@@ -153,7 +153,7 @@ public class VictimStateController : SerializedMonoBehaviour
 
     public void CoyoteTime()
     {
-        coyoteTimeHit1 = Physics2D.Raycast(new Vector2(1,transform.position.y), Vector2.down, rayDistance, groundLayer);
+        coyoteTimeHit1 = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
         Debug.DrawRay(new Vector2(1, transform.position.y), Vector2.down * rayDistance, Color.red);
         
         if (!didJump && hit.collider == null)

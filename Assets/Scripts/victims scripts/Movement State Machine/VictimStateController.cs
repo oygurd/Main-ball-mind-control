@@ -33,7 +33,9 @@ public class VictimStateController : SerializedMonoBehaviour
     private RaycastHit2D hit;
     private RaycastHit2D coyoteTimeHit1;
     private RaycastHit2D coyoteTimeHit2;
+    private RaycastHit2D boxCastHit;
 
+    public Transform DebuggingEmpty;
 
     [Required("Cannot be 0!")] public float airTimeSetter;
 
@@ -88,7 +90,6 @@ public class VictimStateController : SerializedMonoBehaviour
         RaycastGroundCheck();
         ChangeMovementState();
 
-        CoyoteTime();
         //actions
     }
 
@@ -108,6 +109,7 @@ public class VictimStateController : SerializedMonoBehaviour
         if (JumpInput.IsPressed() && isGrounded)
         {
             movementStates = MovementStates.Jumping;
+            didJump = true;
         }
     }
 
@@ -115,9 +117,13 @@ public class VictimStateController : SerializedMonoBehaviour
     public void RaycastGroundCheck()
     {
         //managing the ground detection -----------------
-       hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+        hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
 
-        if (hit.collider != null)
+        boxCastHit = Physics2D.BoxCast(transform.position, new Vector2(1.5f, 0.2f), 0, Vector2.down, rayDistance,
+            groundLayer);
+
+
+        if (boxCastHit.collider != null && Vector2.Dot(hit.normal,Vector2.up) > 0.5f)
         {
             isGrounded = true;
 
@@ -131,11 +137,11 @@ public class VictimStateController : SerializedMonoBehaviour
             Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.green);
         }
 
-        else if (hit.collider == null)
+        else if (boxCastHit.collider == null )
         {
             isGrounded = false;
             jumpCount = 0;
-            //didJump = true;
+            didJump = true;
 
             if (airTime != 0)
             {
@@ -151,14 +157,19 @@ public class VictimStateController : SerializedMonoBehaviour
         }
     }
 
-    public void CoyoteTime()
+    
+
+    private void OnDrawGizmos()
     {
-        coyoteTimeHit1 = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
-        Debug.DrawRay(new Vector2(1, transform.position.y), Vector2.down * rayDistance, Color.red);
-        
-        if (!didJump && hit.collider == null)
+        if (boxCastHit.collider == null)
         {
-            jumpCount = 1;
+            Gizmos.color = Color.red;
         }
+        else
+        {
+            Gizmos.color = Color.green;
+        }
+
+        Gizmos.DrawCube(DebuggingEmpty.transform.position, new Vector2(1.5f, 0.2f));
     }
 }

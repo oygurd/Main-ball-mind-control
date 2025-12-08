@@ -23,7 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   Health: 100
   movementSpeed: 3
-  jumpStrength: 0.4
+  jumpStrength: 0.5
   WeaponPrefab: {fileID: 0}
   icon: {fileID: 0}
   baseDamage: 15

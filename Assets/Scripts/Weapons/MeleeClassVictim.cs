@@ -21,6 +21,7 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     public RaycastHit2D weaponRaycastHit;
     public LayerMask WeaponLayerMask;
+    //public Collider2D enemyHit;
 
     public RaycastHit2D parryRaycastHit;
     public LayerMask parryLayerMask;
@@ -37,7 +38,10 @@ public class MeleeClassVictim : SerializedMonoBehaviour
             weaponRaycastHit = Physics2D.Raycast(transform.position,
                 transform.right * VictimTransformReference.localScale.x,
                 MeleeWeaponParameters.attackRange, WeaponLayerMask);
+            
+           // enemyHit = weaponRaycastHit.collider;
         }
+        
     }
 
     private void Awake()

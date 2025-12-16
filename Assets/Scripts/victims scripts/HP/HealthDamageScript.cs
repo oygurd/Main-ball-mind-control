@@ -9,20 +9,20 @@ public class HealthDamageScript : SerializedMonoBehaviour
 {
     public Slider healthSlider;
 
-    private InputAction test;
+   // private InputAction test;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        test = InputSystem.actions.FindAction("Test");
+      //  test = InputSystem.actions.FindAction("Test");
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (test.triggered)
         {
             healthSlider.value -= 0.1f;
         }
-    }
+    }*/
 }

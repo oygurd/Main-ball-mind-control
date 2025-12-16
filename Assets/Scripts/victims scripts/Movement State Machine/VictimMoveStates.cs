@@ -1,12 +1,11 @@
-using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
 public class VictimMoveStates : SerializedMonoBehaviour
 {
     public ClassManagerConfig victimClassValues;
-    private MeleeWeaponParameters meleeClass;
-    private RangedWeaponParameters RangedClass;
+    private MeleeWeaponParameters _meleeClass;
+    private RangedWeaponParameters _rangedClass;
     
     [Required]
     private VictimStateController victimStateController;
@@ -39,10 +38,5 @@ public class VictimMoveStates : SerializedMonoBehaviour
     {
         victimStateController.victimRigidbody.AddForce(Vector2.up * victimJumpStrength, ForceMode2D.Impulse);
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    
 }

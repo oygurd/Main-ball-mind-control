@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallAttachDettachController : SerializedMonoBehaviour
 {
@@ -12,7 +13,10 @@ public class BallAttachDettachController : SerializedMonoBehaviour
     [SerializeField] Rigidbody2D ballRb;
 
     [SerializeField] CircleCollider2D ballCollider;
-
+    
+    
+    //temp UI
+    public Image isControlledChanger;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -33,6 +37,18 @@ public class BallAttachDettachController : SerializedMonoBehaviour
         {
             DetachFromHost();
         }
+        
+        
+        
+        //temp UI
+        if (isHeld)
+        {
+            isControlledChanger.color = Color.green;
+        }
+        else
+        {
+            isControlledChanger.color = Color.red;
+        }
     }
 
     public void AttachToHost()
@@ -48,4 +64,9 @@ public class BallAttachDettachController : SerializedMonoBehaviour
 
         
     }
+    
+    //temporary UI stuff
+    
+    
+    
 }

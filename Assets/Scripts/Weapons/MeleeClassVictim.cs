@@ -21,7 +21,8 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     public RaycastHit2D weaponRaycastHit;
     public LayerMask WeaponLayerMask;
-    //public Collider2D enemyHit;
+    public Collider2D enemyHit;
+    HealthDamageScript healthDamageScript;
 
     public RaycastHit2D parryRaycastHit;
     public LayerMask parryLayerMask;
@@ -39,7 +40,10 @@ public class MeleeClassVictim : SerializedMonoBehaviour
                 transform.right * VictimTransformReference.localScale.x,
                 MeleeWeaponParameters.attackRange, WeaponLayerMask);
 
-            // enemyHit = weaponRaycastHit.collider;
+            if (weaponRaycastHit.collider.transform.TryGetComponent<IDamageable>(out IDamageable damageable))
+            {
+                damageable.TakeDamage(MeleeWeaponParameters.baseDamage);
+            }
         }
     }
 

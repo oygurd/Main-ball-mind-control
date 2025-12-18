@@ -894,7 +894,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: -5.74}
+  m_AnchoredPosition: {x: 15, y: 12.1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &650394409
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Controlled
+  m_text: Controlling a victim
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -944,8 +944,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32.92
+  m_fontSizeBase: 32.92
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1031,8 +1031,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -841, y: 497}
-  m_SizeDelta: {x: -1720, y: -1030}
+  m_AnchoredPosition: {x: -841, y: 473.59}
+  m_SizeDelta: {x: -1720, y: -983.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695245532
 MonoBehaviour:
@@ -1756,6 +1756,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  victimStats: {fileID: 11400000, guid: ae9719849cbd2484995e418098f0687e, type: 2}
+  Hp: 0
   healthSlider: {fileID: 1972232118}
 --- !u!1 &948476073
 GameObject:
@@ -2789,13 +2791,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1570482892}
     - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      propertyPath: WeaponLayerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: VictimTransformReference
       value: 
       objectReference: {fileID: 937530908}
     - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3256,7 +3262,7 @@ GameObject:
   - component: {fileID: 1983963428}
   - component: {fileID: 1983963427}
   - component: {fileID: 1983963426}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Katana Victim - Melee (1)
   m_TagString: Victim
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -3284,6 +3290,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  victimStats: {fileID: 11400000, guid: ae9719849cbd2484995e418098f0687e, type: 2}
+  Hp: 0
   healthSlider: {fileID: 1477356941}
 --- !u!114 &1983963427
 MonoBehaviour:
@@ -3450,10 +3458,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5827411b-17ae-4d6b-8dea-55979c2251f2
-    m_ActionName: 'Player/Test[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -4241,6 +4245,7 @@ MonoBehaviour:
   ballTransform: {fileID: 0}
   ballRb: {fileID: 0}
   ballCollider: {fileID: 0}
+  isControlledChanger: {fileID: 695245532}
 --- !u!114 &2146074931
 MonoBehaviour:
   m_ObjectHideFlags: 0

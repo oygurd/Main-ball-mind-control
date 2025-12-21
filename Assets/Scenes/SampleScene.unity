@@ -1907,7 +1907,7 @@ GameObject:
   - component: {fileID: 959710682}
   - component: {fileID: 959710684}
   - component: {fileID: 959710683}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2040,7 +2040,7 @@ GameObject:
   - component: {fileID: 1095751846}
   - component: {fileID: 1095751848}
   - component: {fileID: 1095751847}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2254,7 +2254,7 @@ GameObject:
   - component: {fileID: 1245227860}
   - component: {fileID: 1245227859}
   - component: {fileID: 1245227858}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: VictimHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
@@ -2447,7 +2447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1566546442}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2561,7 +2561,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 447
 --- !u!114 &1639298342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2772,7 +2772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4721223796384050181, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4932919213771005843, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_Name
@@ -2780,7 +2780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4932919213771005843, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: m_Enabled
@@ -2801,7 +2801,7 @@ PrefabInstance:
     - target: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6113061229234950028, guid: af7e0acd89a8c81419a91bcab7360ec4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3107,7 +3107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972232117}
   - component: {fileID: 1972232118}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

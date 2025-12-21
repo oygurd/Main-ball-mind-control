@@ -29,5 +29,6 @@ public class HealthDamageScript : SerializedMonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         Hp -= damage;
+        healthSlider.value = Hp;
     }
 }

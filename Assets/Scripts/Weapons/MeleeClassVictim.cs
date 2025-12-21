@@ -21,8 +21,13 @@ public class MeleeClassVictim : SerializedMonoBehaviour
 
     public RaycastHit2D weaponRaycastHit;
     public LayerMask WeaponLayerMask;
-    public Collider2D enemyHit;
-    HealthDamageScript healthDamageScript;
+    public Collider2D lastEnemyCol;
+    IDamageable melee_damageable;
+    public int hitTimes;
+    public delegate void DamageEvent();
+
+    public static event DamageEvent OnHitEnemy;
+    
 
     public RaycastHit2D parryRaycastHit;
     public LayerMask parryLayerMask;
@@ -40,12 +45,29 @@ public class MeleeClassVictim : SerializedMonoBehaviour
                 transform.right * VictimTransformReference.localScale.x,
                 MeleeWeaponParameters.attackRange, WeaponLayerMask);
 
-            if (weaponRaycastHit.collider.transform.TryGetComponent<IDamageable>(out IDamageable damageable))
+            lastEnemyCol = weaponRaycastHit.collider;
+            if (weaponRaycastHit.collider != null)
             {
-                damageable.TakeDamage(MeleeWeaponParameters.baseDamage);
+                hitTimes += 1;
+                if (weaponRaycastHit.collider.gameObject.TryGetComponent(out melee_damageable) && hitTimes == 1)
+                {
+                    melee_damageable.TakeDamage(MeleeWeaponParameters.baseDamage);
+                    Debug.Log("Damage applied" + MeleeWeaponParameters.baseDamage);
+                }
+            }
+
+            if (weaponRaycastHit.collider != lastEnemyCol ||weaponRaycastHit.collider == null )
+            {
+                hitTimes = 0;
             }
         }
     }
+
+    public void TakeDamageReferencer()
+    {
+        melee_damageable.TakeDamage(MeleeWeaponParameters.baseDamage);
+    }
+    
 
     private void Awake()
     {

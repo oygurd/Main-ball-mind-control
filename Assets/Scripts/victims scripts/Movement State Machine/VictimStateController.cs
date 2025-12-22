@@ -27,6 +27,7 @@ public class VictimStateController : SerializedMonoBehaviour
     float rayDistance;
 
     [SerializeField] int jumpCount;
+    [SerializeField] private int Jumps; //increase in order to have a restriction on jumping
     [SerializeField] private bool didJump;
     [SerializeField] float airTime;
 
@@ -34,6 +35,8 @@ public class VictimStateController : SerializedMonoBehaviour
     private RaycastHit2D coyoteTimeHit1;
     private RaycastHit2D coyoteTimeHit2;
     private RaycastHit2D boxCastHit;
+
+    [SerializeField] Collider2D lastSurface;
 
     public Transform DebuggingEmpty;
 
@@ -109,6 +112,7 @@ public class VictimStateController : SerializedMonoBehaviour
         if (JumpInput.IsPressed() && isGrounded)
         {
             movementStates = MovementStates.Jumping;
+            Jumps += 1;
             didJump = true;
         }
     }
@@ -119,30 +123,34 @@ public class VictimStateController : SerializedMonoBehaviour
         //managing the ground detection -----------------
         hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
 
-        boxCastHit = Physics2D.BoxCast(transform.position, new Vector2(1.5f, 0.2f), 0, Vector2.down, rayDistance,
+        boxCastHit = Physics2D.BoxCast(transform.position, new Vector2(1.0f, 0.2f), 0, Vector2.down, rayDistance,
             groundLayer);
 
+        lastSurface = hit.collider;
 
-        if (boxCastHit.collider != null && Vector2.Dot(hit.normal,Vector2.up) > 0.5f)
+        if (boxCastHit.collider != null )
         {
-            isGrounded = true;
+            
+                isGrounded = true;
+                jumpCount = 1;
+                didJump = false;
+                airTime = airTimeSetter; // need to adjust it to any victim based on wepaon
 
-            jumpCount = 1;
-            didJump = false;
-            airTime = airTimeSetter; // need to adjust it to any victim based on wepaon
+                GravityManager.instance.SetGravityScale(1, 1);
+                victimRigidbody.linearDamping = 5;
 
-            GravityManager.instance.SetGravityScale(1, 1);
-            victimRigidbody.linearDamping = 5;
-
-            Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.green);
+                Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.green);
+            
+            
+           
         }
 
-        else if (boxCastHit.collider == null )
+        else if (boxCastHit.collider == null)
         {
             isGrounded = false;
             jumpCount = 0;
             didJump = true;
-
+            Jumps = 0;
             if (airTime != 0)
             {
                 airTime -= 1 * Time.deltaTime;
@@ -153,11 +161,10 @@ public class VictimStateController : SerializedMonoBehaviour
                 }
             }
 
-            Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.red);
+           // Debug.DrawRay(transform.position, Vector2.down * rayDistance, Color.red);
         }
     }
 
-    
 
     private void OnDrawGizmos()
     {
@@ -170,6 +177,6 @@ public class VictimStateController : SerializedMonoBehaviour
             Gizmos.color = Color.green;
         }
 
-        Gizmos.DrawCube(DebuggingEmpty.transform.position, new Vector2(1.5f, 0.2f));
+        Gizmos.DrawCube(DebuggingEmpty.transform.position, new Vector2(1.0f, 0.2f));
     }
 }
